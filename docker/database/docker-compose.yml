@@ -1,0 +1,24 @@
+services: 
+  db:   # database service (MySQL)
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: SET08103
+      MYSQL_DATABASE: SET08103             # Specify the name of database - this will be the name of the databse we need to quote in the connection code.
+      MYSQL_USER: WedTeam1                    # Create database user account
+      MYSQL_PASSWORD: reallySecurePassword!   # create a really good password for ourselves! 
+
+  www: # Web server / PHP service 
+    image: php:8.3.26RC1-apache # pulls image of PHP and apache from docker hub
+    volumes:
+      - "./:/var/www/html" # default location for apache web server files, where the default webpage is served from
+    ports:
+      - 80:80 # maps ports of container to the local port 80, to allow viewing of the webserver on 'localhost'
+    # - 443:443 we could set up SSL certificates and use https port/encrypted traffic, but for this assessment probably not necessary
+
+  phpmyadmin: # phpMyAdmin service
+    image: phpmyadmin/phpmyadmin
+    ports:
+      - 8001:80 # assigns a port for the phpmyadmin interface, so localhost:8001 will allow us to access phpmyadmin URL on the web server.
+    environment: 
+      - PMA_HOST=db   # references our 'db' service within the container.
+      - PMA_PORT=3306 # default phpMyAdmin port is 3306!
