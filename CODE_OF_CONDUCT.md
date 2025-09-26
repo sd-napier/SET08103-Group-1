@@ -65,5 +65,3 @@ We must work as a team. In cases where anyone is dismissed, they won’t be able
 Agreement
 
 By participating in this project, you agree to abide by this Code of Conduct. Every team member is encouraged to read, understand, and actively practice these standards.
-
-
