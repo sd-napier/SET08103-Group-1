@@ -1,19 +1,12 @@
-# VCS / CI
 .git
 .github/
 .gitignore
 
-# IDE
 .idea/
 .vscode/
 *.iml
-
-# OS
 .DS_Store
 
-# Build outputs (we build inside Docker)
+# built inside Docker
 target/
 PopReports/target/
-
-# Docs and other large files that aren't needed to compile
-*.docx
