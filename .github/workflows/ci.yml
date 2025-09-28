@@ -2,38 +2,29 @@ name: CI
 
 on:
   push:
-    branches: [ develop, master ]
+    branches: [ master, main, develop ]
   pull_request:
-    branches: [ develop, master ]
+    branches: [ master, main, develop ]
 
 jobs:
-  build:
+  build-test-image:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-        
-      #Seets up JDK
+
       - name: Set up Temurin JDK 17
         uses: actions/setup-java@v4
         with:
           distribution: temurin
           java-version: 17
           cache: maven
-          
-      #Builds jar with maven
-      - name: Build with Maven (fat jar)
-        working-directory: PopReports
-        run: mvn -B -DskipTests package
-        
-      # Uploads shaded jar
-      - name: Upload shaded jar artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: popreports-jar
-          path: PopReports/target/*-shaded.jar
 
-      # Build Docker image to prove Dockerfile works
-      - name: Build Docker image
-        working-directory: PopReports
-        run: docker build -t population-app:ci .
+      # Run unit tests (host side) for fast feedback
+      - name: Test (PopReports)
+        run: mvn -B -pl PopReports -am test
+
+      # Build the container using the multi-stage Dockerfile
+      - name: Docker build
+        run: docker build -t population-reports:ci .
