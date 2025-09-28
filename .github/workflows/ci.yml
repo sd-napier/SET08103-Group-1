@@ -1,5 +1,9 @@
 name: CI
 
+https://github:
+  com/sd-napier/SET08103-Group-1/actions/workflows/ci:
+    yml/badge:
+      svg?branch=master:
 on:
   push:
     branches: [ master, main, develop ]
