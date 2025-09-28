@@ -4,23 +4,18 @@
 FROM maven:3.9.9-eclipse-temurin-17 AS build
 WORKDIR /build
 
-# Copy parent and module POMs first for better caching
-COPY pom.xml ./pom.xml
+# Copy only what's needed for caching
 COPY PopReports/pom.xml ./PopReports/pom.xml
+# Pull deps for the PopReports project (no reactor needed)
+RUN mvn -B -DskipTests -f PopReports/pom.xml dependency:go-offline
 
-# Go offline for the PopReports module (downloads deps only once)
-RUN mvn -B -DskipTests -pl PopReports -am dependency:go-offline
-
-# Now add sources and build just the module
+# Now copy sources and build
 COPY PopReports/src ./PopReports/src
-RUN mvn -B -DskipTests -pl PopReports -am package
+RUN mvn -B -DskipTests -f PopReports/pom.xml package
 
 ########### 2) Runtime stage ###########
 FROM eclipse-temurin:17-jre
 WORKDIR /app
-
-# Copy the shaded (fat) JAR that the module produces
+# Copy the shaded jar built by the module
 COPY --from=build /build/PopReports/target/*-shaded.jar /app/app.jar
-
-# EXPOSE 8080   # if your app listens on 8080, uncomment
 ENTRYPOINT ["java","-jar","/app/app.jar"]
