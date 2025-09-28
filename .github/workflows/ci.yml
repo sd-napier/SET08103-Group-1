@@ -35,5 +35,4 @@ jobs:
 
       # Build Docker image to prove Dockerfile works
       - name: Build Docker image
-        working-directory: PopReports
         run: docker build -t population-app:ci .
