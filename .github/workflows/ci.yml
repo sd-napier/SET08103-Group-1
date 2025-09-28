@@ -21,10 +21,10 @@ jobs:
           java-version: 17
           cache: maven
 
-      # Run unit tests (host side) for fast feedback
+      # Run tests against the module ONLY (no reactor)
       - name: Test (PopReports)
-        run: mvn -B -pl PopReports -am test
+        run: mvn -B -f PopReports/pom.xml test
 
-      # Build the container using the multi-stage Dockerfile
-      - name: Docker build
-        run: docker build -t population-reports:ci .
+      # Build image using module-local Dockerfile and context
+      - name: Docker build (PopReports)
+        run: docker build -t population-reports:ci -f PopReports/Dockerfile PopReports
