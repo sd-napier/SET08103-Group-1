@@ -2,27 +2,32 @@ name: CI
 
 on:
   push:
-    branches: [ master, main, develop ]
+    branches: [ master, develop ]
   pull_request:
-    branches: [ master, main, develop ]
+    branches: [ master, develop ]
 
 jobs:
-  build-test-image:
+  build:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Set up Temurin JDK 17
+      - name: Set up Temurin JDK 17 # As per the github docs tutorial Temurin is supposed to be used here
         uses: actions/setup-java@v4
         with:
           distribution: temurin
           java-version: 17
           cache: maven
 
-      - name: Test PopReports via reactor
-        run: mvn -B -pl PopReports -am test
+      # Build & test the PopReports project
+      - name: Build with Maven (PopReports)
+        run: mvn -B -f PopReports/pom.xml package
 
+      # list what got built
+      - name: List target
+        run: ls -l PopReports/target
+
+      # Build Docker image at repo root
       - name: Docker build
         run: docker build -t population-reports:ci .
