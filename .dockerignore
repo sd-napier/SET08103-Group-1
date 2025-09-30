@@ -1,0 +1,14 @@
+.git
+.github/
+.gitignore
+
+.idea/
+.vscode/
+*.iml
+.DS_Store
+
+# built inside Docker
+target/
+PopReports/target/
+# whitelisting the path to jar as docker was ignoring it for some reason without this getting copy errors on docker build
+!PopReports/target/population-reports-0.1.0.jar
