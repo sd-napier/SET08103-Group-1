@@ -22,7 +22,7 @@ jobs:
 
       # Build & test the PopReports project
       - name: Build with Maven (PopReports)
-        run: mvn -B -f PopReports/pom.xml package
+        run: mvn -B -f pom.xml package
 
       # list what got built
       - name: List target
