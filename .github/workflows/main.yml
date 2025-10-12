@@ -17,5 +17,5 @@ jobs:
         run: |
           mvn package -DskipTests
           docker compose up --abort-on-container-exit
-      - name: view logs
-        run: docker logs set08103-group-1-db
+      #- name: view logs
+       # run: docker logs set08103-group-1
