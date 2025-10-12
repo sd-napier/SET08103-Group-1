@@ -4,7 +4,32 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="ae8ab2ca-90fb-4ffe-8002-4bb176c17ba4" name="Changes" comment="Deleting everything except Readme and Code of Conduct in preparation for copy-over of semi-quick-cw files" />
+=======
+    <list default="true" id="ae8ab2ca-90fb-4ffe-8002-4bb176c17ba4" name="Changes" comment="Deleted all files again, had forgotten to add workflows yaml and this caused a failure to push to Master">
+      <changelist_data name="Socrates Davidopoulos" email="40785797@live.napier.ac.uk" automatic="false" />
+      <change afterPath="$PROJECT_DIR$/.github/workflows/main.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/markdown.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CODE_OF_CONDUCT.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/napier/sem/App.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/napier/sem/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/semApp.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/use-cases/use-case-4.md" beforeDir="false" />
+    </list>
+>>>>>>> 9ca7fca (Deleted all files again, had forgotten to add workflows yaml and this caused a failure to push to Master)
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -19,7 +44,11 @@
     </option>
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
+<<<<<<< HEAD
         <entry key="$PROJECT_DIR$" value="develop" />
+=======
+        <entry key="$PROJECT_DIR$" value="master" />
+>>>>>>> 9ca7fca (Deleted all files again, had forgotten to add workflows yaml and this caused a failure to push to Master)
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -31,12 +60,21 @@
     &quot;assignee&quot;: &quot;sd-napier&quot;
   }
 }</component>
+<<<<<<< HEAD
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/sd-napier/SET08103-Group-1&quot;,
     &quot;accountId&quot;: &quot;7ba68052-958c-443b-8e59-e8a3d2b93a5c&quot;
   }
 }</component>
+=======
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/sd-napier/SET08103-Group-1",
+    "accountId": "7ba68052-958c-443b-8e59-e8a3d2b93a5c"
+  }
+}]]></component>
+>>>>>>> 9ca7fca (Deleted all files again, had forgotten to add workflows yaml and this caused a failure to push to Master)
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 4
 }</component>
@@ -45,6 +83,7 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
+<<<<<<< HEAD
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
@@ -62,6 +101,25 @@
     &quot;settings.editor.selected.configurable&quot;: &quot;project.propCompiler&quot;
   }
 }</component>
+=======
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "<unknown>",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/mnt/Storage/Napier University/SET08103 - Software Engineering Methods/Assessment Code/SET08103-Group-1/.mvn",
+    "onboarding.tips.debug.path": "/mnt/Storage/Napier University/SET08103 - Software Engineering Methods/Assessment Code/SET08103-Group-1/src/main/java/com/napier/sem/Main.java",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "project.propCompiler"
+  }
+}]]></component>
+>>>>>>> 9ca7fca (Deleted all files again, had forgotten to add workflows yaml and this caused a failure to push to Master)
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/.mvn" />
@@ -187,7 +245,19 @@
       <option name="project" value="LOCAL" />
       <updated>1760288072315</updated>
     </task>
+<<<<<<< HEAD
     <option name="localTasksCounter" value="13" />
+=======
+    <task id="LOCAL-00013" summary="Added all the semi-quick-cw files that worked with MySQL to Master">
+      <option name="closed" value="true" />
+      <created>1760288687734</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1760288687734</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
+>>>>>>> 9ca7fca (Deleted all files again, had forgotten to add workflows yaml and this caused a failure to push to Master)
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -201,7 +271,14 @@
     <MESSAGE value="Reworked the README.md, added Workflow badge for master" />
     <MESSAGE value="Deleted InitialDeliverables.docx which was mistakenly pushed to Develop" />
     <MESSAGE value="Deleting everything except Readme and Code of Conduct in preparation for copy-over of semi-quick-cw files" />
+<<<<<<< HEAD
     <option name="LAST_COMMIT_MESSAGE" value="Deleting everything except Readme and Code of Conduct in preparation for copy-over of semi-quick-cw files" />
+=======
+    <MESSAGE value="Added all the semi-quick-cw files that worked with MySQL to Master" />
+    <MESSAGE value="Now with added main.yml workflow" />
+    <MESSAGE value="Deleted all files again, had forgotten to add workflows yaml and this caused a failure to push to Master" />
+    <option name="LAST_COMMIT_MESSAGE" value="Deleted all files again, had forgotten to add workflows yaml and this caused a failure to push to Master" />
+>>>>>>> 9ca7fca (Deleted all files again, had forgotten to add workflows yaml and this caused a failure to push to Master)
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
