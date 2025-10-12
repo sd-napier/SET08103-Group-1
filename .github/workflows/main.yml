@@ -1,4 +1,4 @@
-name: Coursework Workflow
+name: Coursework_Workflow
 on: push
 
 jobs:
