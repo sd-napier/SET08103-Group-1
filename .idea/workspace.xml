@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="ae8ab2ca-90fb-4ffe-8002-4bb176c17ba4" name="Changes" comment="Deleting everything except Readme and Code of Conduct in preparation for copy-over of semi-quick-cw files" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="PREVIOUS_COMMIT_AUTHORS">
+      <list>
+        <option value="Socrates Davidopoulos &lt;40785797@live.napier.ac.uk&gt;" />
+        <option value="Socrates Davidopoulos" />
+      </list>
+    </option>
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="develop" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="SIGN_OFF_COMMIT" value="true" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;sd-napier&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/sd-napier/SET08103-Group-1&quot;,
+    &quot;accountId&quot;: &quot;7ba68052-958c-443b-8e59-e8a3d2b93a5c&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 4
+}</component>
+  <component name="ProjectId" id="334MOFOkHCVNKBQGWV0e2Xu4J2Y" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/mnt/Storage/Napier University/SET08103 - Software Engineering Methods/Assessment Code/SET08103-Group-1/.mvn&quot;,
+    &quot;onboarding.tips.debug.path&quot;: &quot;/mnt/Storage/Napier University/SET08103 - Software Engineering Methods/Assessment Code/SET08103-Group-1/src/main/java/com/napier/sem/Main.java&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;project.propCompiler&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/.mvn" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/PopReports" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="SET08103-Group-1" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="SET08103-Group-1" />
+      <option name="filePath" />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="ae8ab2ca-90fb-4ffe-8002-4bb176c17ba4" name="Changes" comment="" />
+      <created>1758571860675</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1758571860675</updated>
+    </task>
+    <task id="LOCAL-00001" summary="Updated the .gitignore file with details from here https://github.com/edinburgh-napier/SET08103/tree/main/labs/lab01, as I think the originals were the default .gitignore?">
+      <option name="closed" value="true" />
+      <created>1758572371565</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1758572371565</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Rebased Master, added Release badge in README.md">
+      <option name="closed" value="true" />
+      <created>1758903966313</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1758903966313</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Added Workflow badge in README.md">
+      <option name="closed" value="true" />
+      <created>1758904234138</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1758904234138</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Built project and pushed">
+      <option name="closed" value="true" />
+      <created>1758904584066</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1758904584066</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Added mvn clean compile to 'run' main.yaml">
+      <option name="closed" value="true" />
+      <created>1758904960463</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1758904960463</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Added mvn clean compile to 'run' main.yaml">
+      <option name="closed" value="true" />
+      <created>1758904994927</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1758904994927</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Reworked the README.md, accidental workflow badge duplicate">
+      <option name="closed" value="true" />
+      <created>1758905479487</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1758905479487</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Reworked the README.md, accidental workflow badge duplicate">
+      <option name="closed" value="true" />
+      <created>1758905510853</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1758905510853</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Reworked the README.md, accidental workflow badge duplicate">
+      <option name="closed" value="true" />
+      <created>1758906750225</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1758906750225</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Reworked the README.md, added Workflow badge for master">
+      <option name="closed" value="true" />
+      <created>1759128982045</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1759128982045</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Deleted InitialDeliverables.docx which was mistakenly pushed to Develop">
+      <option name="closed" value="true" />
+      <created>1759156997344</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1759156997344</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Deleting everything except Readme and Code of Conduct in preparation for copy-over of semi-quick-cw files">
+      <option name="closed" value="true" />
+      <created>1760288072315</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1760288072315</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
+    <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Created Java project and included base App.java, prepared pom.xml and set up plugins + dependencies" />
+    <MESSAGE value="Updated the .gitignore file with details from here https://github.com/edinburgh-napier/SET08103/tree/main/labs/lab01, as I think the originals were the default .gitignore?" />
+    <MESSAGE value="Rebased Master, added Release badge in README.md" />
+    <MESSAGE value="Added Workflow badge in README.md" />
+    <MESSAGE value="Built project and pushed" />
+    <MESSAGE value="Added mvn clean compile to 'run' main.yaml" />
+    <MESSAGE value="Reworked the README.md, accidental workflow badge duplicate" />
+    <MESSAGE value="Reworked the README.md, added Workflow badge for master" />
+    <MESSAGE value="Deleted InitialDeliverables.docx which was mistakenly pushed to Develop" />
+    <MESSAGE value="Deleting everything except Readme and Code of Conduct in preparation for copy-over of semi-quick-cw files" />
+    <option name="LAST_COMMIT_MESSAGE" value="Deleting everything except Readme and Code of Conduct in preparation for copy-over of semi-quick-cw files" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/napier/sem/Main.java</url>
+          <line>13</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>
