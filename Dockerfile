@@ -1,4 +1,4 @@
 FROM openjdk:latest
 COPY ./target/semApp.jar /tmp
 WORKDIR /tmp
-ENTRYPOINT ["java", "-jar", "semApp.jar"]
+ENTRYPOINT ["java", "-jar", "App.jar"]
