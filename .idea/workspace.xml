@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="1b161f52-2cd6-42ca-a7e9-00ab66d98329" name="Changes" comment="Modified CI workflow name to make adding badges easier" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+        <option value="Dockerfile" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="PREVIOUS_COMMIT_AUTHORS">
+      <list>
+        <option value="Socrates Davidopoulos &lt;40785797@live.napier.ac.uk&gt;" />
+        <option value="Socrates Davidopoulos &lt;4785797&gt;" />
+      </list>
+    </option>
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="SIGN_OFF_COMMIT" value="true" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;sd-napier&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/sd-napier/SET08103-Group-1&quot;,
+    &quot;accountId&quot;: &quot;7ba68052-958c-443b-8e59-e8a3d2b93a5c&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 6
+}</component>
+  <component name="ProjectId" id="33yfCTjD600rGFnHfAsnJn2CqXD" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Docker.docker-compose.yml: Compose Deployment.executor": "Run",
+    "Maven.SET08103-Group-1 [package].executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "develop",
+    "kotlin-language-version-configured": "true",
+    "onboarding.tips.debug.path": "/mnt/Storage/Napier University/SET08103 - Software Engineering Methods/Assessment Code/SET08103-Group-1/SET08103-Group-1/src/main/java/com/napier/sem/Main.java"
+  }
+}]]></component>
+  <component name="RunManager">
+    <configuration default="true" type="docker-deploy" factoryName="docker-compose.yml" temporary="true">
+      <deployment type="docker-compose.yml">
+        <settings />
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration name="docker-compose.yml: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="sourceFilePath" value="docker-compose.yml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="1b161f52-2cd6-42ca-a7e9-00ab66d98329" name="Changes" comment="" />
+      <created>1760294108976</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1760294108976</updated>
+    </task>
+    <task id="LOCAL-00001" summary="Rebuilt the entire project in Master branch">
+      <option name="closed" value="true" />
+      <created>1760294798548</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1760294798548</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Rebuilt the entire project in Master branch, created first package known as App.jar">
+      <option name="closed" value="true" />
+      <created>1760295098330</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1760295098330</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Rebuilt the entire project in Master branch, created first package known as App.jar">
+      <option name="closed" value="true" />
+      <created>1760295368635</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1760295368635</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Fixed Dockerfile to target &quot;App.jar&quot;">
+      <option name="closed" value="true" />
+      <created>1760295680427</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1760295680427</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Fixed Dockerfile to target &quot;App.jar&quot;">
+      <option name="closed" value="true" />
+      <created>1760295790617</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1760295790617</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Fixed Dockerfile to point to correct container">
+      <option name="closed" value="true" />
+      <created>1760296083757</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1760296083757</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Fixed Dockerfile to point to correct container">
+      <option name="closed" value="true" />
+      <created>1760296297507</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1760296297507</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Commented out log lines in the main.yml file">
+      <option name="closed" value="true" />
+      <created>1760296939066</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1760296939066</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Modified CI workflow name to make adding badges easier">
+      <option name="closed" value="true" />
+      <created>1760297465769</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1760297465769</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
+    <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Rebuilt the entire project in Master branch" />
+    <MESSAGE value="Rebuilt the entire project in Master branch, created first package known as App.jar" />
+    <MESSAGE value="Fixed Dockerfile to target &quot;App.jar&quot;" />
+    <MESSAGE value="Fixed Dockerfile to point to correct container" />
+    <MESSAGE value="Commented out log lines in the main.yml file" />
+    <MESSAGE value="Modified CI workflow name to make adding badges easier" />
+    <option name="LAST_COMMIT_MESSAGE" value="Modified CI workflow name to make adding badges easier" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/napier/sem/Main.java</url>
+          <line>13</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>
