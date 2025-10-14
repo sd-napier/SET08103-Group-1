@@ -20,8 +20,6 @@ Post-conditions:
 
 Report displayed showing all countries sorted by population (descending).
 
-User may export or apply filters.
-
 Normal Flow:
 
 System displays report options screen.
@@ -363,7 +361,7 @@ Pre-conditions:
 Country list visible; database contains details.
 
 Post-conditions:
-Detailed report displayed or exported.
+Detailed report displayed
 
 Normal Flow:
 
@@ -371,11 +369,9 @@ System retrieves full data for selected country.
 
 System builds formatted report (table, chart).
 
-Report displayed or exported to CSV/PDF.
 
 Extends (Alternative Flows):
 E1: Missing data → system shows error.
-E2: User chooses export → system generates downloadable file.
 
 Includes:
 —
