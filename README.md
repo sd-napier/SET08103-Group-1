@@ -1,4 +1,4 @@
-![workflow](https://github.com/sd-napier/SET08103-Group-1/actions/workflows/Coursework_Workflow.yml/badge.svg)
+![workflow](https://github.com/sd-napier/SET08103-Group-1/actions/workflows/main.yml/badge.svg) # changed to new workflow file
 
 [![LICENSE](https://img.shields.io/github/license/sd-napier/devops.svg?style=flat-square)](https://github.com/sd-napier/SET08103-Group-1/blob/master/LICENSE)
 
