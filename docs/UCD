@@ -1,380 +1,480 @@
-Use Case descriptors for the system
-________________________________________________________________________________________________________________________
-Use Case ID: PR1
+USE CASE: Generate All Countries by Population
+CHARACTERISTIC INFORMATION
 
-Use Case Name: Generate All Countries by Population
-Created by: AG
-Date Created: 14/10/2025
+Goal in Context:
+Generate and display a report showing all countries sorted by population (descending).
 
-Actors:
+Scope:
+Population Reports System
+
+Level:
+Primary Task
+
+Preconditions:
+Database connection established.
+Population data exists for all countries.
+
+Success End Condition:
+Report displayed showing all countries sorted by population (descending).
+
+Failed End Condition:
+Report not generated or database unavailable.
+
+Primary Actor:
 User / Analyst
 
 Trigger:
 User selects “Generate All Countries by Population” from the menu.
 
-Pre-conditions:
-
-Database connection established.
-
-Population data exists for all countries.
-
-Post-conditions:
-
-Report displayed showing all countries sorted by population (descending).
-
-Normal Flow:
+MAIN SUCCESS SCENARIO
 
 System displays report options screen.
-
 User chooses “All Countries by Population.”
-
 System queries database for all countries and populations.
-
 System sorts list by population (desc).
-
 System displays ranked results.
 
-Extends (Alternative Flows):
-E1: Sort by Population (PR8) extends at step 4 if user changes order.
-E2: Generate Country Report (PR10) extends at step 5 when user selects a country.
+EXTENSIONS
 
-Includes:
-—
+E1: Sort by Population extends at step 4 if user changes order.
+E2: Generate Country Report extends at step 5 when user selects a country.
+
+SUB-VARIATIONS
+
+None.
+
+SCHEDULE
+
+DUE DATE: 15/10/2025
 ________________________________________________________________________________________________________________________
-Use Case ID: PR2
+USE CASE: Generate Countries by Continent by Population
+CHARACTERISTIC INFORMATION
 
-Use Case Name: Generate Countries by Continent by Population
-Created by: AG
-Date Created: 14/10/2025
+Goal in Context:
+Generate and display a list of countries within a selected continent ranked by population.
 
-Actors:
+Scope:
+Population Reports System
+
+Level:
+Primary Task
+
+Preconditions:
+Continent data available.
+Countries mapped to continents.
+
+Success End Condition:
+List of countries within selected continent displayed and sorted by population.
+
+Failed End Condition:
+Invalid continent selection or no data available.
+
+Primary Actor:
 User / Analyst
 
 Trigger:
 User selects a continent and runs the report.
 
-Pre-conditions:
-
-Continent data available.
-
-Countries mapped to continents.
-
-Post-conditions:
-List of countries within selected continent displayed and sorted by population.
-
-Normal Flow:
+MAIN SUCCESS SCENARIO
 
 System prompts user to select a continent.
-
 System retrieves countries for that continent.
-
 System sorts by population (desc).
-
 Results displayed to the user.
 
-Extends (Alternative Flows):
-E1: Filter by Continent/Region (PR9) extends at step 1 if filter applied automatically.
-E2: Sort by Population (PR8) extends at step 3 if user changes order.
-E3: Generate Country Report (PR10) extends at step 4.
+EXTENSIONS
 
-Includes:
-—
+E1: Filter by Continent/Region extends at step 1 if filter applied automatically.
+E2: Sort by Population extends at step 3 if user changes order.
+E3: Generate Country Report extends at step 4.
+
+SUB-VARIATIONS
+
+None.
+
+SCHEDULE
+
+DUE DATE: 15/10/2025
 ________________________________________________________________________________________________________________________
-Use Case ID: PR3
+USE CASE: Generate Countries by Region by Population
+CHARACTERISTIC INFORMATION
 
-Use Case Name: Generate Countries by Region by Population
-Created by: AG
-Date Created: 14/10/2025
+Goal in Context:
+Display a ranked list of countries in a specific region based on population data.
 
-Actors:
+Scope:
+Population Reports System
+
+Level:
+Primary Task
+
+Preconditions:
+Region data available.
+Countries mapped to regions.
+
+Success End Condition:
+Ranked list of countries in region displayed.
+
+Failed End Condition:
+Invalid region selection or no data available.
+
+Primary Actor:
 User / Analyst
 
 Trigger:
 User selects a region and runs the report.
 
-Pre-conditions:
-
-Region data available.
-
-Countries mapped to regions.
-
-Post-conditions:
-Ranked list of countries in region displayed.
-
-Normal Flow:
+MAIN SUCCESS SCENARIO
 
 System prompts user to choose a region.
-
 System fetches countries within the region.
-
 System sorts by population (desc).
-
 Display results.
 
-Extends (Alternative Flows):
-E1: Filter by Continent/Region (PR9) extends at step 1.
-E2: Sort by Population (PR8) extends at step 3.
-E3: Generate Country Report (PR10) extends at step 4.
+EXTENSIONS
 
-Includes:
-—
+E1: Filter by Continent/Region extends at step 1.
+E2: Sort by Population extends at step 3.
+E3: Generate Country Report extends at step 4.
+
+SUB-VARIATIONS
+
+None.
+
+SCHEDULE
+
+DUE DATE: 15/10/2025
 ________________________________________________________________________________________________________________________
-Use Case ID: PR4
+USE CASE: Generate Top N Populated Countries (World)
+CHARACTERISTIC INFORMATION
 
-Use Case Name: Generate Top N Populated Countries (World)
-Created by: AG
-Date Created: 14/10/2025
+Goal in Context:
+Generate and display the top N populated countries in the world.
 
-Actors:
+Scope:
+Population Reports System
+
+Level:
+Primary Task
+
+Preconditions:
+Database connection established.
+N value entered.
+
+Success End Condition:
+Top N countries ranked and displayed.
+
+Failed End Condition:
+Invalid N entered or database unavailable.
+
+Primary Actor:
 User / Analyst
 
 Trigger:
 User selects “Top N Countries in the World.”
 
-Pre-conditions:
+MAIN SUCCESS SCENARIO
 
-Database connection established.
-
-N value entered (see PR7).
-
-Post-conditions:
-Top N countries ranked and displayed.
-
-Normal Flow:
-
-System invokes Enter N Value (PR7).
-
+System invokes Enter N Value.
 User enters integer N.
-
 System retrieves all countries and populations.
-
 System sorts descending.
-
 System selects first N entries.
-
 System displays Top N list.
 
-Extends (Alternative Flows):
-E1: Invalid N → system requests re-entry.
-E2: Generate Country Report (PR10) extends at step 6.
+EXTENSIONS
 
-Includes:
-PR7 Enter N Value
+E1: Invalid N system requests re-entry.
+E2: Generate Country Report extends at step 6.
+
+SUB-VARIATIONS
+
+None.
+
+SCHEDULE
+
+DUE DATE: 15/10/2025
 ________________________________________________________________________________________________________________________
-Use Case ID: PR5
+USE CASE: Generate Top N Populated Countries in a Continent
+CHARACTERISTIC INFORMATION
 
-Use Case Name: Generate Top N Populated Countries in a Continent
-Created by: AG
-Date Created: 14/10/2025
+Goal in Context:
+Display the top N populated countries within a selected continent.
 
-Actors:
+Scope:
+Population Reports System
+
+Level:
+Primary Task
+
+Preconditions:
+Valid continent selected.
+N value entered.
+
+Success End Condition:
+Top N countries in chosen continent displayed.
+
+Failed End Condition:
+Invalid continent or N value.
+
+Primary Actor:
 User / Analyst
 
 Trigger:
 User chooses “Top N by Continent.”
 
-Pre-conditions:
-
-Valid continent selected.
-
-N value entered.
-
-Post-conditions:
-Top N countries in chosen continent displayed.
-
-Normal Flow:
+MAIN SUCCESS SCENARIO
 
 System prompts for continent.
-
-System invokes Enter N Value (PR7).
-
+System invokes Enter N Value.
 System fetches countries in that continent.
-
 System sorts by population (desc).
-
 System selects Top N records.
-
 System displays results.
 
-Extends (Alternative Flows):
-E1: Filter by Continent (PR9) extends at step 1.
-E2: Invalid N → system prompts re-entry.
-E3: Generate Country Report (PR10) extends at step 6.
+EXTENSIONS
 
-Includes:
-PR7 Enter N Value
+E1: Filter by Continent extends at step 1.
+E2: Invalid N system prompts re-entry.
+E3: Generate Country Report extends at step 6.
+
+SUB-VARIATIONS
+
+None.
+
+SCHEDULE
+
+DUE DATE: 15/10/2025
 ________________________________________________________________________________________________________________________
-Use Case ID: PR6
+USE CASE: Generate Top N Populated Countries in a Region
+CHARACTERISTIC INFORMATION
 
-Use Case Name: Generate Top N Populated Countries in a Region
-Created by: AG
-Date Created: 14/10/2025
+Goal in Context:
+Display the top N populated countries within a chosen region.
 
-Actors:
+Scope:
+Population Reports System
+
+Level:
+Primary Task
+
+Preconditions:
+Valid region selected.
+N value entered.
+
+Success End Condition:
+Top N countries in region displayed.
+
+Failed End Condition:
+Invalid region or N value.
+
+Primary Actor:
 User / Analyst
 
 Trigger:
 User chooses “Top N by Region.”
 
-Pre-conditions:
-
-Valid region selected.
-
-N value entered.
-
-Post-conditions:
-Top N countries in region displayed.
-
-Normal Flow:
+MAIN SUCCESS SCENARIO
 
 System prompts for region.
-
-System invokes Enter N Value (PR7).
-
+System invokes Enter N Value.
 System fetches matching countries.
-
 System sorts by population (desc).
-
 System selects Top N.
-
 Display list.
 
-Extends (Alternative Flows):
-E1: Filter by Continent/Region (PR9) extends at step 1.
-E2: Invalid N → system requests re-entry.
-E3: Generate Country Report (PR10) extends at step 6.
+EXTENSIONS
 
-Includes:
-PR7 Enter N Value
+E1: Filter by Continent/Region extends at step 1.
+E2: Invalid N system requests re-entry.
+E3: Generate Country Report extends at step 6.
+
+SUB-VARIATIONS
+
+None.
+
+SCHEDULE
+
+DUE DATE: 15/10/2025
 ________________________________________________________________________________________________________________________
-Use Case ID: PR7
+USE CASE: Enter N Value
+CHARACTERISTIC INFORMATION
 
-Use Case Name: Enter N Value
-Created by: AG
-Date Created: 14/10/2025
+Goal in Context:
+Capture a valid integer N value from the user to support Top N reports.
 
-Actors:
+Scope:
+Population Reports System
+
+Level:
+Subfunction
+
+Preconditions:
+Parent use case active.
+
+Success End Condition:
+Validated N value returned to parent.
+
+Failed End Condition:
+Invalid or cancelled N entry.
+
+Primary Actor:
 User / Analyst
 
 Trigger:
 System prompts for N to produce Top N report.
 
-Pre-conditions:
-Parent use case active (PR4 – PR6).
-
-Post-conditions:
-Validated N value returned to parent.
-
-Normal Flow:
+MAIN SUCCESS SCENARIO
 
 System requests integer input N.
-
 User enters N.
-
-System validates (≥ 1).
-
+System validates.
 N passed to calling use case.
 
-Extends (Alternative Flows):
-E1: Invalid N → system shows message, return to step 2.
+EXTENSIONS
 
-Includes:
-—
+E1: Invalid N system shows message, return to step 2.
+
+SUB-VARIATIONS
+
+None.
+
+SCHEDULE
+
+DUE DATE: 15/10/2025
 ________________________________________________________________________________________________________________________
-Use Case ID: PR8
+USE CASE: Sort by Population
+CHARACTERISTIC INFORMATION
 
-Use Case Name: Sort by Population
-Created by: AG
-Date Created: 14/10/2025
+Goal in Context:
+Reorder any displayed list of countries by ascending or descending population.
 
-Actors:
+Scope:
+Population Reports System
+
+Level:
+Subfunction
+
+Preconditions:
+A list of countries already displayed.
+
+Success End Condition:
+List redisplayed according to selected order.
+
+Failed End Condition:
+Invalid sort option or list unchanged.
+
+Primary Actor:
 User / Analyst
 
 Trigger:
 User selects ascending or descending sort order.
 
-Pre-conditions:
-A list of countries already displayed.
-
-Post-conditions:
-List redisplayed according to selected order.
-
-Normal Flow:
+MAIN SUCCESS SCENARIO
 
 System captures sort selection.
-
 System re-orders dataset.
-
 Updated list displayed.
 
-Extends (Alternative Flows):
-E1: Invalid option → system reverts to default (desc).
+EXTENSIONS
 
-Includes:
-—
+E1: Invalid option system reverts to default (desc).
+
+SUB-VARIATIONS
+
+None.
+
+SCHEDULE
+
+DUE DATE: 15/10/2025
 ________________________________________________________________________________________________________________________
-Use Case ID: PR9
+USE CASE: Filter by Continent / Region
+CHARACTERISTIC INFORMATION
 
-Use Case Name: Filter by Continent / Region
-Created by: AG
-Date Created: 14/10/2025
+Goal in Context:
+Allow the user to filter countries by continent or region to refine results.
 
-Actors:
+Scope:
+Population Reports System
+
+Level:
+Subfunction
+
+Preconditions:
+List or report context active.
+
+Success End Condition:
+Filtered results displayed.
+
+Failed End Condition:
+No results or invalid filter criteria.
+
+Primary Actor:
 User / Analyst
 
 Trigger:
 User applies a continent or region filter.
 
-Pre-conditions:
-List or report context active.
-
-Post-conditions:
-Filtered results displayed.
-
-Normal Flow:
+MAIN SUCCESS SCENARIO
 
 System prompts for continent/region input.
-
 User selects filter values.
-
 System applies filter to dataset.
-
 Sorted (desc) results redisplayed.
 
-Extends (Alternative Flows):
-E1: No results → system notifies user and clears filter.
+EXTENSIONS
 
-Includes:
-—
+E1: No results system notifies user and clears filter.
+
+SUB-VARIATIONS
+
+None.
+
+SCHEDULE
+
+DUE DATE: 15/10/2025
 ________________________________________________________________________________________________________________________
-Use Case ID: PR10
+USE CASE: Generate Country Report
+CHARACTERISTIC INFORMATION
 
-Use Case Name: Generate Country Report
-Created by: AG
-Date Created: 14/10/2025
+Goal in Context:
+Display detailed information for a selected country.
 
-Actors:
+Scope:
+Population Reports System
+
+Level:
+Subfunction
+
+Preconditions:
+Country list visible; database contains details.
+
+Success End Condition:
+Detailed report displayed.
+
+Failed End Condition:
+Missing data or invalid country selected.
+
+Primary Actor:
 User / Analyst
 
 Trigger:
 User selects a country from displayed results.
 
-Pre-conditions:
-Country list visible; database contains details.
-
-Post-conditions:
-Detailed report displayed
-
-Normal Flow:
+MAIN SUCCESS SCENARIO
 
 System retrieves full data for selected country.
+System builds formatted report.
 
-System builds formatted report (table, chart).
+EXTENSIONS
 
+E1: Missing data system shows error.
 
-Extends (Alternative Flows):
-E1: Missing data → system shows error.
+SUB-VARIATIONS
 
-Includes:
-—
+None.
+
+SCHEDULE
+
+DUE DATE: 15/10/2025
 ________________________________________________________________________________________________________________________
