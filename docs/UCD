@@ -1,0 +1,382 @@
+Use Case ID: PR1
+
+Use Case Name: Generate All Countries by Population
+Created by: AG
+Date Created: 14/10/2025
+
+Actors:
+User / Analyst
+
+Trigger:
+User selects “Generate All Countries by Population” from the menu.
+
+Pre-conditions:
+
+Database connection established.
+
+Population data exists for all countries.
+
+Post-conditions:
+
+Report displayed showing all countries sorted by population (descending).
+
+User may export or apply filters.
+
+Normal Flow:
+
+System displays report options screen.
+
+User chooses “All Countries by Population.”
+
+System queries database for all countries and populations.
+
+System sorts list by population (desc).
+
+System displays ranked results.
+
+Extends (Alternative Flows):
+E1: Sort by Population (PR8) extends at step 4 if user changes order.
+E2: Generate Country Report (PR10) extends at step 5 when user selects a country.
+
+Includes:
+—
+________________________________________________________________________________________________________________________
+Use Case ID: PR2
+
+Use Case Name: Generate Countries by Continent by Population
+Created by: AG
+Date Created: 14/10/2025
+
+Actors:
+User / Analyst
+
+Trigger:
+User selects a continent and runs the report.
+
+Pre-conditions:
+
+Continent data available.
+
+Countries mapped to continents.
+
+Post-conditions:
+List of countries within selected continent displayed and sorted by population.
+
+Normal Flow:
+
+System prompts user to select a continent.
+
+System retrieves countries for that continent.
+
+System sorts by population (desc).
+
+Results displayed to the user.
+
+Extends (Alternative Flows):
+E1: Filter by Continent/Region (PR9) extends at step 1 if filter applied automatically.
+E2: Sort by Population (PR8) extends at step 3 if user changes order.
+E3: Generate Country Report (PR10) extends at step 4.
+
+Includes:
+—
+________________________________________________________________________________________________________________________
+Use Case ID: PR3
+
+Use Case Name: Generate Countries by Region by Population
+Created by: AG
+Date Created: 14/10/2025
+
+Actors:
+User / Analyst
+
+Trigger:
+User selects a region and runs the report.
+
+Pre-conditions:
+
+Region data available.
+
+Countries mapped to regions.
+
+Post-conditions:
+Ranked list of countries in region displayed.
+
+Normal Flow:
+
+System prompts user to choose a region.
+
+System fetches countries within the region.
+
+System sorts by population (desc).
+
+Display results.
+
+Extends (Alternative Flows):
+E1: Filter by Continent/Region (PR9) extends at step 1.
+E2: Sort by Population (PR8) extends at step 3.
+E3: Generate Country Report (PR10) extends at step 4.
+
+Includes:
+—
+________________________________________________________________________________________________________________________
+Use Case ID: PR4
+
+Use Case Name: Generate Top N Populated Countries (World)
+Created by: AG
+Date Created: 14/10/2025
+
+Actors:
+User / Analyst
+
+Trigger:
+User selects “Top N Countries in the World.”
+
+Pre-conditions:
+
+Database connection established.
+
+N value entered (see PR7).
+
+Post-conditions:
+Top N countries ranked and displayed.
+
+Normal Flow:
+
+System invokes Enter N Value (PR7).
+
+User enters integer N.
+
+System retrieves all countries and populations.
+
+System sorts descending.
+
+System selects first N entries.
+
+System displays Top N list.
+
+Extends (Alternative Flows):
+E1: Invalid N → system requests re-entry.
+E2: Generate Country Report (PR10) extends at step 6.
+
+Includes:
+PR7 Enter N Value
+________________________________________________________________________________________________________________________
+Use Case ID: PR5
+
+Use Case Name: Generate Top N Populated Countries in a Continent
+Created by: AG
+Date Created: 14/10/2025
+
+Actors:
+User / Analyst
+
+Trigger:
+User chooses “Top N by Continent.”
+
+Pre-conditions:
+
+Valid continent selected.
+
+N value entered.
+
+Post-conditions:
+Top N countries in chosen continent displayed.
+
+Normal Flow:
+
+System prompts for continent.
+
+System invokes Enter N Value (PR7).
+
+System fetches countries in that continent.
+
+System sorts by population (desc).
+
+System selects Top N records.
+
+System displays results.
+
+Extends (Alternative Flows):
+E1: Filter by Continent (PR9) extends at step 1.
+E2: Invalid N → system prompts re-entry.
+E3: Generate Country Report (PR10) extends at step 6.
+
+Includes:
+PR7 Enter N Value
+________________________________________________________________________________________________________________________
+Use Case ID: PR6
+
+Use Case Name: Generate Top N Populated Countries in a Region
+Created by: AG
+Date Created: 14/10/2025
+
+Actors:
+User / Analyst
+
+Trigger:
+User chooses “Top N by Region.”
+
+Pre-conditions:
+
+Valid region selected.
+
+N value entered.
+
+Post-conditions:
+Top N countries in region displayed.
+
+Normal Flow:
+
+System prompts for region.
+
+System invokes Enter N Value (PR7).
+
+System fetches matching countries.
+
+System sorts by population (desc).
+
+System selects Top N.
+
+Display list.
+
+Extends (Alternative Flows):
+E1: Filter by Continent/Region (PR9) extends at step 1.
+E2: Invalid N → system requests re-entry.
+E3: Generate Country Report (PR10) extends at step 6.
+
+Includes:
+PR7 Enter N Value
+________________________________________________________________________________________________________________________
+Use Case ID: PR7
+
+Use Case Name: Enter N Value
+Created by: AG
+Date Created: 14/10/2025
+
+Actors:
+User / Analyst
+
+Trigger:
+System prompts for N to produce Top N report.
+
+Pre-conditions:
+Parent use case active (PR4 – PR6).
+
+Post-conditions:
+Validated N value returned to parent.
+
+Normal Flow:
+
+System requests integer input N.
+
+User enters N.
+
+System validates (≥ 1).
+
+N passed to calling use case.
+
+Extends (Alternative Flows):
+E1: Invalid N → system shows message, return to step 2.
+
+Includes:
+—
+________________________________________________________________________________________________________________________
+Use Case ID: PR8
+
+Use Case Name: Sort by Population
+Created by: AG
+Date Created: 14/10/2025
+
+Actors:
+User / Analyst
+
+Trigger:
+User selects ascending or descending sort order.
+
+Pre-conditions:
+A list of countries already displayed.
+
+Post-conditions:
+List redisplayed according to selected order.
+
+Normal Flow:
+
+System captures sort selection.
+
+System re-orders dataset.
+
+Updated list displayed.
+
+Extends (Alternative Flows):
+E1: Invalid option → system reverts to default (desc).
+
+Includes:
+—
+________________________________________________________________________________________________________________________
+Use Case ID: PR9
+
+Use Case Name: Filter by Continent / Region
+Created by: AG
+Date Created: 14/10/2025
+
+Actors:
+User / Analyst
+
+Trigger:
+User applies a continent or region filter.
+
+Pre-conditions:
+List or report context active.
+
+Post-conditions:
+Filtered results displayed.
+
+Normal Flow:
+
+System prompts for continent/region input.
+
+User selects filter values.
+
+System applies filter to dataset.
+
+Sorted (desc) results redisplayed.
+
+Extends (Alternative Flows):
+E1: No results → system notifies user and clears filter.
+
+Includes:
+—
+________________________________________________________________________________________________________________________
+Use Case ID: PR10
+
+Use Case Name: Generate Country Report
+Created by: AG
+Date Created: 14/10/2025
+
+Actors:
+User / Analyst
+
+Trigger:
+User selects a country from displayed results.
+
+Pre-conditions:
+Country list visible; database contains details.
+
+Post-conditions:
+Detailed report displayed or exported.
+
+Normal Flow:
+
+System retrieves full data for selected country.
+
+System builds formatted report (table, chart).
+
+Report displayed or exported to CSV/PDF.
+
+Extends (Alternative Flows):
+E1: Missing data → system shows error.
+E2: User chooses export → system generates downloadable file.
+
+Includes:
+—
+________________________________________________________________________________________________________________________
