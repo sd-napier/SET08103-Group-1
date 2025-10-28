@@ -1,10 +1,62 @@
 package com.napier.sem;
 
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+
 public class Queries {
 
     // Constructor
     public Queries() {
 
+
+    }
+
+    /**
+     * runQuery - A Function that runs a query on the database and returns a result set
+     * @param query - query to be run on database
+     * @return
+     * @throws SQLException
+     * @author Stuart C. Alexander
+     */
+    public ResultSet runQuery(String query) throws SQLException {
+
+        ResultSet result = null;
+
+        try {
+            Connection conn = DriverManager.getConnection("jdbc:mysql://db:3306/world?useSSL=false&allowPublicKeyRetrieval=true", "root", "example");
+            //Bind passed in query as prepared statement
+            PreparedStatement stmt = conn.prepareStatement(query);
+            result = stmt.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw e;
+        }
+        return result;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public String[] getContinent() throws SQLException {
+
+        // Query to select each distinct continent from the country table
+        String query = "SELECT DISTINCT Continent FROM country;";
+
+        // Gets data from runQuery Method and stores in ResultSet
+        ResultSet data = runQuery(query);
+
+        // ArrayList to store results
+        List<String> continents = new ArrayList<>();
+
+        // Parse Data to Arraylist
+        while (data.next()) {
+            continents.add(data.getString("Continent"));
+        }
+
+        // Return string[] of arraylist (did it this way because otherwise you have to predefine the size of array)
+        return continents.toArray(new String[0]);
     }
 //    REPORT NEEDED                                                                                                         REPORT GROUP
 //    -----------------------------------------------------------------------------------------------------------------------------------
