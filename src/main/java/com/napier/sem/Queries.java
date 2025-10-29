@@ -1,5 +1,7 @@
 package com.napier.sem;
 
+
+
 public class Queries {
 
     // Constructor
