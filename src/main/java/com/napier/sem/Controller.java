@@ -4,13 +4,14 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * @author stual
- * @date 29/10/2025
+/** A Controller Method for Interacting with the database, and running queries
+ * @author Stuart C.Alexander
+ * @since Oct 2025
  */
 public class Controller {
 
     public Controller() {
+    Queries q = new Queries();
 
     }
 
@@ -34,10 +35,13 @@ public class Controller {
                 e.printStackTrace();
                 throw e;
             }
-
     }
 
-
+    /** testQuery - This method contains a query that selects each of the continents contained in the database, and passes it to run test query.
+     * @author Stuart C. Alexander
+     * @since Oct 2025
+     * @throws SQLException
+     */
     public void testQuery() throws SQLException {
         String testQuery = "SELECT DISTINCT Continent FROM country;";
         String category  = "Continent";
@@ -45,6 +49,10 @@ public class Controller {
         runTestQuery(testQuery, category);
 
     }
+
+    /** testConnection - This Method tests the database connection, and if successful runs the test query which prints the names of all the Continents contained in the Database.
+     *
+     */
     public void testConnection() {
         try
         {
