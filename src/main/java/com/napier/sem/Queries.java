@@ -1,10 +1,19 @@
 package com.napier.sem;
 
+
+
 public class Queries {
 
     // Constructor
     public Queries() {
 
+        // These Queries will return the unique name of each Continent, Region, Country, District, Capital and City.
+        String Continents = "SELECT DISTINCT Continent FROM Country";
+        String Regions = "SELECT DISTINCT Region FROM Country WHERE Continent ="; // will need to append the continent in the method that uses this
+        String Countries = "SELECT DISTINCT Name FROM Country";
+        String District = "SELECT DISTINCT District FROM City";
+        // String Capital =  "SELECT DISTINCT Name FROM City WHERE; <-- this one will need a join on the Country table where : country.capital == city.ID
+        String City = "SELECT DISTINCT Name FROM City;";
     }
 //    REPORT NEEDED                                                                                                         REPORT GROUP
 //    -----------------------------------------------------------------------------------------------------------------------------------
