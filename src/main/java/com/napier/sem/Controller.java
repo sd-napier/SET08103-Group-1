@@ -14,29 +14,37 @@ public class Controller {
 
     }
 
-    public void runQuery() {
+    /** runQuery Method - runs a passed in query(String query), and prints the results from a defined column(String category)
+     * @author Stuart C. Alexander
+     * @since Oct 2025
+     * @param query
+     * @param category
+     * @throws SQLException
+     */
+    public void runTestQuery(String query, String category) throws SQLException {
+            ResultSet result = null;
+            try {
+                Connection conn = DriverManager.getConnection("jdbc:mysql://db:3306/world?useSSL=false&allowPublicKeyRetrieval=true", "root", "example");
+                PreparedStatement stmt = conn.prepareStatement(query);
+                result = stmt.executeQuery();
+                while (result.next()) {
+                    System.out.println(result.getString(category));
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+                throw e;
+            }
 
     }
+
 
     public void testQuery() throws SQLException {
         String testQuery = "SELECT DISTINCT Continent FROM country;";
+        String category  = "Continent";
 
-            // Gets data from runQuery Method and stores in ResultSet
-            ResultSet data = runQuery(testQuery);
+        runTestQuery(testQuery, category);
 
-            // ArrayList to store results
-            List<String> continents = new ArrayList<>();
-
-            // Parse Data to Arraylist
-            while (data.next()) {
-                continents.add(data.getString("Continent"));
-            }
-
-            // Return string[] of arraylist (did it this way because otherwise you have to predefine the size of array)
-            return continents.toArray(new String[0]);
     }
-
-
     public void testConnection() {
         try
         {
@@ -64,6 +72,7 @@ public class Controller {
                 System.out.println("Successfully connected");
                 // Wait a bit
                 Thread.sleep(1000);
+                testQuery();
                 // Exit for loop
                 break;
             }
@@ -92,4 +101,3 @@ public class Controller {
         }
     }
 }
-
