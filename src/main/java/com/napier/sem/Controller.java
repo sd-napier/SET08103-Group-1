@@ -1,8 +1,6 @@
 package com.napier.sem;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
 
 /** A Controller Method for Interacting with the database, and running queries
  * @author Stuart C.Alexander
@@ -53,7 +51,52 @@ public class Controller {
         runTestQuery(testQuery, category);
 
     }
+    public ResultSet runQuery(String query) throws SQLException {
+        ResultSet result = null;
+        try {
+            Connection conn = DriverManager.getConnection("jdbc:mysql://db:3306/world?useSSL=false&allowPublicKeyRetrieval=true", "root", "example");
+            PreparedStatement stmt = conn.prepareStatement(query);
+            result = stmt.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
 
+    public void populationReports() {
+        // Result set for storing query results
+        ResultSet data;
+
+        //World Population Query (needs table appended)
+        String worldPopQuery = "SELECT Population FROM ";
+
+        // Count variables for storing population counts
+        int popCount = 0;
+        int cityCount = 0;
+
+        try {
+            data = runQuery(worldPopQuery + "country;"); // Run query on the 'country' table
+            while (data.next()) {
+                popCount +=  data.getInt("Population"); // Add total pops
+            }
+
+            data = runQuery(worldPopQuery + "city;");   // Run query on the 'city' table
+
+            while (data.next()) {
+                cityCount +=  data.getInt("Population"); // add total city dwellers
+            }
+
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            System.out.println("Query Failed");
+        }
+//        System.out.println("|-------------------------------------------------------------------------------------------|");
+//        System.out.println("|   Name   |  Population  |  Total in Cities | ")
+//        String row = String.format("| %-10s | ");
+        double perCity = ((double) cityCount / popCount) * 100;
+        System.out.println("The population of the world is " + popCount + ". " + cityCount + "(" + perCity + "%) live in cities," + (popCount - cityCount) + "(" + (100 - perCity) + "%) do not.");
+    }
     /** testConnection - This Method tests the database connection upon creation from the Docker container, and if successful runs the test query which prints the names of all the Continents contained in the Database.
      *
      */
@@ -85,7 +128,7 @@ public class Controller {
                 // Wait a bit
                 Thread.sleep(1000);
                 testQuery();
-                Menu menu = new Menu();
+                Menu menu = new Menu(this);
                 menu.printMainMenu();
                 // Exit for loop
                 break;
@@ -115,7 +158,7 @@ public class Controller {
         }
     }
 
-    public void javaTestConnection() {
+    public void LocalTestConnection() {
         try
         {
             // Load Database driver
@@ -142,7 +185,7 @@ public class Controller {
                 System.out.println("Successfully connected");
                 // Wait a bit
                 Thread.sleep(1000);
-                Menu menu = new Menu();
+                Menu menu = new Menu(this);
                 menu.printMainMenu();
                 // Exit for loop
                 break;
