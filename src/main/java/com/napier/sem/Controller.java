@@ -10,9 +10,13 @@ import java.util.List;
  */
 public class Controller {
 
+    /** Constructor
+     * @author Stuart C.Alexander
+     * @since Nov 2025
+     */
     public Controller() {
-    Queries q = new Queries();
-
+        // Create Instance of the Queries Class
+        Queries q = new Queries();
     }
 
     /** runQuery Method - runs a passed in query(String query), and prints the results from a defined column(String category)
