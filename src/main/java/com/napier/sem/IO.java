@@ -8,6 +8,9 @@ import java.util.Scanner;
  */
 public class IO {
 
+    public IO() {
+
+    }
     // Instance of the scanner
     private final Scanner input = new Scanner(System.in);
 
@@ -29,5 +32,10 @@ public class IO {
             result = 0 ;
         }
         return result;
+
+    }
+
+    public void closeScanner() {
+        input.close();
     }
 }
