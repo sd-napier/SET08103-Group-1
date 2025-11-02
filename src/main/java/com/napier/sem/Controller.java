@@ -85,6 +85,8 @@ public class Controller {
                 // Wait a bit
                 Thread.sleep(1000);
                 testQuery();
+                Menu menu = new Menu();
+                menu.printMainMenu();
                 // Exit for loop
                 break;
             }
