@@ -4,6 +4,10 @@ services:
   # Build app from Dockerfile in same folder
   app:
     build: .
+    image: groupwork-app:latest
+    stdin_open: true
+    tty: true
+    command: java -jar App.jar
 
   # Build the db as name db from the Dockerfile in the db folder
   # exposing the port if we want to run code outside a container
