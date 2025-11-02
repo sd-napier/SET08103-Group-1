@@ -39,24 +39,24 @@ public class Menu {
 
         while(running) {
 
-            int choice = input.getInteger();
+            int choice = Integer.parseInt(input.getInput().nextLine());
 
             switch(choice) {
                 case 1: // Print Population Reports
                     System.out.println("Test Pop Reports");
-                    //break; // break out of while loop
+                    break; // break out of while loop
                 case 2:
                     System.out.println("Test City Reports");
-                    //break; // break out of while loo
+                    break; // break out of while loo
                 case 3:
-                    System.out.println("Test Pop Reports");
-                    //break; // break out of while loop
+                    System.out.println("Test Capital Reports");
+                    break; // break out of while loop
                 case 4:
-                    System.out.println("Test Pop Reports");
-                    //break; // break out of while loop
+                    System.out.println("Test Country Reports");
+                    break; // break out of while loop
                 case 5:
-                    System.out.println("Test Pop Reports");
-                    //break; // break out of while loop
+                    System.out.println("Test Language Reports");
+                    break; // break out of while loop
                 case 6:
                     running = false;
                     break;

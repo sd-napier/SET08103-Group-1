@@ -12,8 +12,8 @@ public class App
     public static void main(String[] args) {
 
         Controller cont = new Controller();
-        cont.testConnection();
-
+        cont.dockerTestConnection();
+        //cont.javaTestConnection();
     }
 
 }
