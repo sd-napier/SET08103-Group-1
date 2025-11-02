@@ -8,7 +8,7 @@ public class App
 
         Controller cont = new Controller();
         cont.dockerTestConnection();
-        //cont.javaTestConnection();
+        //cont.LocalTestConnection();
     }
 
 }

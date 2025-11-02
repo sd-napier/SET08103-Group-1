@@ -7,8 +7,10 @@ package com.napier.sem;
 public class Menu {
 
     IO input = new IO();
+    Controller cont;
 
-    public Menu() {
+    public Menu(Controller controller) {
+        cont = controller;
         System.out.println("""
                 |---------------------------------------------------------------------------------------------------------/
                 |----- POPULATION REPORTS -------- v1.0 -----------------------------------------------------------------/
@@ -43,7 +45,7 @@ public class Menu {
 
             switch(choice) {
                 case 1: // Print Population Reports
-                    System.out.println("Test Pop Reports");
+                    cont.populationReports();
                     break; // break out of while loop
                 case 2:
                     System.out.println("Test City Reports");
