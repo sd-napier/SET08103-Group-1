@@ -1,5 +1,10 @@
 package com.napier.sem;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.math.BigInteger;
 import java.sql.*;
 
 /** A Controller Method for Interacting with the database, and running queries
@@ -68,36 +73,111 @@ public class Controller {
         ResultSet data;
 
         //World Population Query (needs table appended)
-        String worldPopQuery = "SELECT Population FROM ";
+        String worldPopQuery = "SELECT SUM(Population) as World_pop FROM ";
 
         // Count variables for storing population counts
-        int popCount = 0;
-        int cityCount = 0;
+        BigInteger cityCount = null;
+        BigInteger popCount = null;
 
         try {
             data = runQuery(worldPopQuery + "country;"); // Run query on the 'country' table
             while (data.next()) {
-                popCount +=  data.getInt("Population"); // Add total pops
+                popCount = BigInteger.valueOf(data.getLong("World_pop")); // Add total pops
             }
 
             data = runQuery(worldPopQuery + "city;");   // Run query on the 'city' table
 
             while (data.next()) {
-                cityCount +=  data.getInt("Population"); // add total city dwellers
+                cityCount = BigInteger.valueOf(data.getLong("World_pop")); // add total city dwellers
             }
+            // little cheat here, working with big integers is hard to do math/ work out percentages so...
+            BigInteger newPopCount = popCount.divide(BigInteger.valueOf(100));
+            BigInteger newCityCount = cityCount.divide(BigInteger.valueOf(100));
 
+            float perPopCount = newPopCount.floatValue();
+            float perCityCount = newCityCount.floatValue();
+
+            float perCity = ((perCityCount / perPopCount) * 100);
+
+            System.out.println("The population of the world is " + popCount + ". " + cityCount + "(" + perCity + "%) live in cities," + (popCount.subtract(cityCount)) + "(" + (100 - perCity) + "%) do not.");
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());
             System.out.println("Query Failed");
         }
-//        System.out.println("|-------------------------------------------------------------------------------------------|");
-//        System.out.println("|   Name   |  Population  |  Total in Cities | ")
-//        String row = String.format("| %-10s | ");
-        double perCity = ((double) cityCount / popCount) * 100;
-        System.out.println("The population of the world is " + popCount + ". " + cityCount + "(" + perCity + "%) live in cities," + (popCount - cityCount) + "(" + (100 - perCity) + "%) do not.");
+//        System.out.println("|---------------------------------------------------------------------------------------------------|");
+//
+//        String row = String.format("|%-10s|%-15s|%-23s|%-13s|");
+
     }
-    /** testConnection - This Method tests the database connection upon creation from the Docker container, and if successful runs the test query which prints the names of all the Continents contained in the Database.
+
+    /** Method to write population reports
+     *
+     */
+    public void outputPopulationReports() {
+        String filename = "popReports.md";
+        String headings = "|   Name   |  Population  |   Total in Cities   | % in Cities |   Not in cities   | % not in cities |";
+
+    }
+
+    /** Method to write all the City Reports
+     *
+     */
+    public void outputCityReports() {
+        String filename = "cityReports.md";
+        String headings = "";
+    }
+
+    /** Method to write all the Capital Reports
+     *
+     */
+    public void outputCapitalReports() {
+        String filename = "capitalReports.md";
+        String headings = "";
+    }
+
+    /** Method to write all the Country reports
+     *
+     */
+    public void outputCountryReports() {
+        String filename = "countryReports.md";
+        String headings = "";
+    }
+
+    /** Method to write all the language reports
+     *
+     */
+    public void outputLanguageReports() {
+        String filename = "languageReports.md";
+        String headings = "";
+    }
+
+    /** Print to .md file
+     *
+     */
+    public void printTofile(String filename, String headings, ResultSet data) {
+
+        StringBuilder sb = new StringBuilder();
+        // Print header
+        sb.append("----------------------------------------------------------------------------------------\n");
+        sb.append(headings + "\n");
+        sb.append("----------------------------------------------------------------------------------------\n");
+
+        // Code block to append data to string builder
+        //
+         //
+
+        try {
+            new File("./reports/").mkdir();
+            BufferedWriter wr = new BufferedWriter(new FileWriter(new File("./reports/" + filename)));
+            wr.write(sb.toString());
+            wr.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    /** testConnection - This Method tests the database connection upon creation from the Docker container, and if successful runs the
+     * test query which prints the names of all the Continents contained in the Database.
      *
      */
     public void dockerTestConnection() {
