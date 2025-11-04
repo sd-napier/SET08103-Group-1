@@ -88,7 +88,7 @@ public class Controller {
 
     public void populationReports() {
         StringBuilder output = new StringBuilder();
-        output.append("| --- | --- | --- | --- | --- | --- |\r\n");
+        output.append("| **Population Reports |\r\n");
         output.append(popReports.getHeadings());
         output.append("| --- | --- | --- | --- | --- | --- |\r\n");
         output.append(popReports.getWorldPopulation());
