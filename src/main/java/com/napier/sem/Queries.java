@@ -72,4 +72,23 @@ public class Queries {
 //    Hindi.            // SEPERATE LANGUAGE TAB
 //    Spanish.
 //    Arabic.
+
+    /** getRegions - a method that returns all the regions in the database
+     *
+     * @return
+     */
+    public String getRegions() {
+        return "SELECT DISTINCT Region FROM country";
+    }
+
+    /** getRegions(Overloaded) - a method that returns all the regions in a user defined continent
+     *
+     * @param continent
+     * @return
+     */
+    public String getRegions(String continent) {
+        return "SELECT DISTINCT Region FROM country WHERE Continent =" + continent;
+    }
+
+
 }
