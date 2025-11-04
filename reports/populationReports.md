@@ -1,4 +1,4 @@
-| **Population Reports |
+Population Reports
 | Name | Population | Total in Cities | % in Cities | Not in cities | % not in cities |
 | --- | --- | --- | --- | --- | --- |
 |World | 6,078,749,450 | 1,429,559,884 | 23.52% | 4,649,189,566 | 76.48% |
