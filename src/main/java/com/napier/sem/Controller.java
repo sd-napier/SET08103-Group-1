@@ -18,11 +18,12 @@ public class Controller {
     Queries queries;
     PopulationReports popReports;
 
+    Connection conn;
     /** Constructor
      * @author Stuart C.Alexander
      * @since Nov 2025
      */
-    public Controller() {
+    public Controller() throws SQLException {
         cont = this;
         queries = new Queries();
         popReports = new PopulationReports(cont);
@@ -65,7 +66,6 @@ public class Controller {
     public ResultSet runQuery(String query) throws SQLException {
         ResultSet result = null;
         try {
-            Connection conn = DriverManager.getConnection("jdbc:mysql://db:3306/world?useSSL=false&allowPublicKeyRetrieval=true", "root", "example");
             PreparedStatement stmt = conn.prepareStatement(query);
             result = stmt.executeQuery();
         } catch (SQLException e) {
@@ -77,7 +77,6 @@ public class Controller {
     public ResultSet runQueryLocal(String query) throws SQLException {
         ResultSet result = null;
         try {
-            Connection conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:33060/world?useSSL=false&allowPublicKeyRetrieval=true", "root", "example");
             PreparedStatement stmt = conn.prepareStatement(query);
             result = stmt.executeQuery();
         } catch (SQLException e) {
@@ -86,6 +85,9 @@ public class Controller {
         return result;
     }
 
+    /** Assembles the population reports
+     *
+     */
     public void populationReports() {
         StringBuilder output = new StringBuilder();
         output.append("Population Reports\r\n");
@@ -93,10 +95,33 @@ public class Controller {
         output.append("| --- | --- | --- | --- | --- | --- |\r\n");
         output.append(popReports.getWorldPopulation());
 
-        ArrayList<String> continents = popReports.getContinentPopulation();
+        output.append("| --- | --- | --- | --- | --- | --- |\r\n");
+        output.append("Continents\r\n");
+        output.append("| --- | --- | --- | --- | --- | --- |\r\n");
+
+        ArrayList<String> continents = popReports.getPopulation("Continent");
         for (String continent : continents) {
             output.append(continent);
         }
+
+        output.append("| --- | --- | --- | --- | --- | --- |\r\n");
+        output.append("Regions\r\n");
+        output.append("| --- | --- | --- | --- | --- | --- |\r\n");
+
+        ArrayList<String> regions = popReports.getPopulation("Region");
+        for (String region : regions) {
+            output.append(region);
+        }
+
+        output.append("| --- | --- | --- | --- | --- | --- |\r\n");
+        output.append("Countries\r\n");
+        output.append("| --- | --- | --- | --- | --- | --- |\r\n");
+
+        ArrayList<String> countries = popReports.getPopulation("Name");
+        for (String country : countries) {
+            output.append(country);
+        }
+
 
         printToFile(popReports.getFilename(), output );
     }
@@ -186,7 +211,7 @@ public class Controller {
                 System.out.println("Successfully connected");
                 // Wait a bit
                 Thread.sleep(1000);
-//                testQuery();
+                conn = DriverManager.getConnection("jdbc:mysql://db:3306/world?useSSL=false&allowPublicKeyRetrieval=true", "root", "example");
                 Menu menu = new Menu(this);
                 menu.printMainMenu();
                 // Exit for loop
