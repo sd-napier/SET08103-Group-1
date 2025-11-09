@@ -25,6 +25,7 @@ public class PopulationReports {
     String notCity;
     String percentNot;
     DecimalFormat bigNumFormat = new DecimalFormat("#,###");
+
     /** Constructor
      *
      */
@@ -43,6 +44,10 @@ public class PopulationReports {
         return filename;
     }
 
+    /** getWorldPopulation - A Method for querying the database and returning the table row for 'World' in the Population Reports.md
+     * @author Stuart C. Alexander
+     * @return String value containing data for world population
+     */
     public String getWorldPopulation() {
 
         name = "World";
@@ -50,8 +55,8 @@ public class PopulationReports {
 
         try {
             /// Result sets to store query results (CHANGE FROM .runQueryLocal TO .runQuery AFTER TESTING)
-            ResultSet worldData = cont.runQueryLocal(query + "country;");
-            ResultSet cityData = cont.runQueryLocal(query + "city;");
+            ResultSet worldData = cont.runQuery(query + "country;");
+            ResultSet cityData = cont.runQuery(query + "city;");
 
             /// BigIntegers required to deal with billions
             BigInteger worldPop = null;
@@ -86,7 +91,7 @@ public class PopulationReports {
         return ("|" + name + " | " + population + " | " +  totalCity + " | " + percentCity + "% | " + notCity + " | " + percentNot + "% |\r\n");
     }
 
-    public ArrayList<String> getContinentPopulation() {
+    public ArrayList<String> getPopulation(String type) {
 
         ArrayList<String> results = new ArrayList<>();
 
@@ -100,21 +105,20 @@ public class PopulationReports {
 
         try {
             /// Result set to store query results (CHANGE FROM .runQueryLocal TO .runQuery AFTER TESTING)
-            ResultSet worldData = cont.runQueryLocal("SELECT Continent, SUM(Population) as pop FROM country GROUP BY Continent;");
+            ResultSet worldData = cont.runQuery("SELECT " + type + ", SUM(Population) as pop FROM country GROUP BY " + type + ";");
             while (worldData.next()) {
-                name = worldData.getString("Continent");
+                name = worldData.getString(type);
                 worldPop = BigInteger.valueOf(worldData.getLong("pop"));
                 population = bigNumFormat.format(worldPop);
                 smallerPop = Math.round(worldPop.divide(BigInteger.valueOf(100)).floatValue());
 
                 /// Result set to store query results (CHANGE FROM .runQueryLocal TO .runQuery AFTER TESTING)
-                ResultSet cityData = cont.runQueryLocal("SELECT SUM(c.Population) AS pop FROM city c JOIN country co ON c.CountryCode = co.Code WHERE Continent = '" + name + "';");
+                ResultSet cityData = cont.runQuery("SELECT SUM(c.Population) AS pop FROM city c JOIN country co ON c.CountryCode = co.Code WHERE co." + type + " = '" + name + "';");
                 while (cityData.next()) {
                     cityPop = BigInteger.valueOf(cityData.getLong("pop"));
                     totalCity = bigNumFormat.format(cityPop);
                     smallerCity = Math.round(cityPop.divide(BigInteger.valueOf(100)).floatValue());
                     notCity = bigNumFormat.format(worldPop.subtract(cityPop));
-
                     float perCity = ((smallerCity / smallerPop) * 100);
                     float perNotCity = 100 - perCity;
                     percentCity = String.format("%.2f", perCity);
