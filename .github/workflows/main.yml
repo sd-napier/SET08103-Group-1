@@ -3,7 +3,7 @@ name: Coursework_Workflow
 on:
   push:
     branches:
-      - Feature
+      - CIntegrationInfra
 
 jobs:
   UnitTests:
