@@ -14,6 +14,7 @@ import java.util.ArrayList;
 public class Controller {
 
     /// Class wide variables;
+    IO input;
     Controller cont;
     Queries queries;
     PopulationReports popReports;
@@ -28,6 +29,7 @@ public class Controller {
         cont = this;
         queries = new Queries();
         popReports = new PopulationReports(cont);
+        input = new IO();
     }
 
     /** runQuery Method - runs a passed in query(String query), and prints the results from a defined column(String category)
@@ -52,6 +54,18 @@ public class Controller {
         }
 
     }
+
+    /**
+     * small function to receive input, parse into integer and apply default if necessary
+     * @return n = user input
+     */
+    public int getN() {
+        System.out.print("→ Please enter a number (press Enter for default 32): ");
+        int n = input.getInteger();   // returns 0 if blank/invalid
+        if (n <= 0) n = 32;           // default to 32
+        return n;
+    }
+
 
     /** testQuery - This method contains a query that selects each of the continents contained in the database, and passes it to run test query.
      * @author Stuart C. Alexander
@@ -136,12 +150,87 @@ public class Controller {
 
     }
 
-    /** Method to write all the City Reports
+    /**
+     * Generates and outputs various city reports to a Markdown file.
+     * <p>
+     * The report includes:
+     * <ul>
+     *     <li>Top N cities in the world</li>
+     *     <li>Top N cities per continent</li>
+     *     <li>Top N cities per region</li>
+     *     <li>Top N cities per country (limited to top 32 countries)</li>
+     *     <li>Top N cities per district (limited to top 32 districts)</li>
+     * </ul>
+     * The results are formatted in Markdown and written to the ./reports directory.
      *
+     * @param n the number of cities to include per group (defaults to 32 if n ≤ 0)
+     * @author Alan Glowacz
      */
-    public void outputCityReports() {
-        String filename = "cityReports.md";
-        String headings = "";
+    public void outputCityReports(int n) {
+        int N = (n <= 0) ? 32 : n; // Default value if invalid input
+
+        try {
+            CityReportService svc = new CityReportService(conn);
+
+            // Markdown table separators for grouped and ungrouped reports
+            final String SEP_NO_GROUP   = "| --- | --- | --- | --- |\r\n";
+            final String SEP_WITH_GROUP = "| --- | --- | --- | --- | --- |\r\n";
+
+            StringBuilder out = new StringBuilder();
+            out.append("City Reports\r\n\r\n");
+
+            // World, Top N cities overall
+            out.append("World — Top ").append(N).append("\r\n");
+            out.append(CityPrinter.HEADING_NO_GROUP).append(SEP_NO_GROUP);
+            for (String line : CityPrinter.toMarkdownRows(svc.worldCities(N), false)) {
+                if (line.equals(CityPrinter.HEADING_NO_GROUP)) continue;
+                out.append(line);
+            }
+            out.append("\r\n");
+
+            // Per Continent, Top N cities per continent
+            out.append("Per Continent — Top ").append(N).append(" per continent\r\n");
+            out.append(CityPrinter.HEADING_WITH_GROUP).append(SEP_WITH_GROUP);
+            for (String line : CityPrinter.toMarkdownRows(svc.continentCities(N), true)) {
+                if (line.equals(CityPrinter.HEADING_WITH_GROUP)) continue;
+                out.append(line);
+            }
+            out.append("\r\n");
+
+            // Per Region, Top N cities per region
+            out.append("Per Region — Top ").append(N).append(" per region\r\n");
+            out.append(CityPrinter.HEADING_WITH_GROUP).append(SEP_WITH_GROUP);
+            for (String line : CityPrinter.toMarkdownRows(svc.regionCities(N), true)) {
+                if (line.equals(CityPrinter.HEADING_WITH_GROUP)) continue;
+                out.append(line);
+            }
+            out.append("\r\n");
+
+            // Per Country, Top 32 countries, Top N cities each
+            out.append("Per Country — Top 32 countries, Top ").append(N).append(" cities each\r\n");
+            out.append(CityPrinter.HEADING_WITH_GROUP).append(SEP_WITH_GROUP);
+            for (String line : CityPrinter.toMarkdownRows(svc.countryCities(32, N), true)) {
+                if (line.equals(CityPrinter.HEADING_WITH_GROUP)) continue;
+                out.append(line);
+            }
+            out.append("\r\n");
+
+            // Per District, Top 32 districts, Top N cities each
+            out.append("Per District — Top 32 districts, Top ").append(N).append(" cities each\r\n");
+            out.append(CityPrinter.HEADING_WITH_GROUP).append(SEP_WITH_GROUP);
+            for (String line : CityPrinter.toMarkdownRows(svc.districtCities(32, N), true)) {
+                if (line.equals(CityPrinter.HEADING_WITH_GROUP)) continue;
+                out.append(line);
+            }
+            out.append("\r\n");
+
+            // Write all report data to file in the ./reports directory
+            printToFile("cityReports.md", out);
+            System.out.println("✓ City reports written to ./reports/cityReports.md");
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("City report generation failed.");
+        }
     }
 
     /** Method to write all the Capital Reports
@@ -300,5 +389,13 @@ public class Controller {
                 System.out.println("Error closing connection to database");
             }
         }
+
+
     }
+
+
+
+
+
+
 }
