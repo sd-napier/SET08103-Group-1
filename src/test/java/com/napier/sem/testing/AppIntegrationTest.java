@@ -90,7 +90,7 @@ public class AppIntegrationTest {
 
         // Path = reports directory.
         File reportsDir = new File("./reports");
-        //reportsDir.mkdir(); // will do nothing if directory already exists
+        //reportsDir.mkdir();
 
 
 
