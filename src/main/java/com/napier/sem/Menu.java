@@ -51,7 +51,9 @@ public class Menu {
                     break; // break out of while loop
                 case 2:
                     System.out.println("Test City Reports");
-                    break; // break out of while loo
+                    int n = cont.getN();
+                    cont.outputCityReports(n);
+                    break; // break out of while loop
                 case 3:
                     System.out.println("Test Capital Reports");
                     break; // break out of while loop
