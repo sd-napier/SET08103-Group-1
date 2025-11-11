@@ -24,15 +24,16 @@
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
-            <version>5.10.0</version> <!-- Dominic updated JUnit dependency for integration tests, was 5.1.0-->
+            <version>5.1.0</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-engine</artifactId>
-            <version>5.10.0</version>
+            <version>5.1.0</version>
             <scope>test</scope>
         </dependency>
+
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
@@ -54,10 +55,13 @@
                     </execution>
                 </executions>
             </plugin>
+
             <plugin>
+                <!-- Dominic updated to support TestNG annotations and JDK17 integration tests -->
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.1.2</version>
+
             </plugin>
 
             <plugin>
@@ -90,4 +94,4 @@
     </build>
 </project>
 
-<!-- Adding comment here for commit-->
+        <!-- Added comment for Dominic's integration testing setup -->
