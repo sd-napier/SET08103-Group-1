@@ -9,7 +9,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import java.io.File;
-import java.io.IOException;
 
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -89,6 +88,12 @@ public class AppIntegrationTest {
         String testFilename = "testWorldPopulation.md";
         String reportContent = pop.getWorldPopulation();
 
+        // Path = reports directory.
+        File reportsDir = new File("./reports");
+        //reportsDir.mkdir(); // will do nothing if directory already exists
+
+
+
         // Generate the report
         controller.printToFile(testFilename, new StringBuilder(reportContent));
 
@@ -97,7 +102,8 @@ public class AppIntegrationTest {
         assertTrue(testReportFile.exists(), "Integration test report file should exist");
 
         // Delete the test file after checking it exists.
-        testReportFile.delete();
+        // Optional
+        //testReportFile.delete();
     }
 
 
