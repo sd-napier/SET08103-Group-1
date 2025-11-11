@@ -8,35 +8,35 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
       - name: Set up JDK 17
         uses: actions/setup-java@v4
         with:
           java-version: '17'
           distribution: 'adopt'
-            # Build JAR without running tests yet
-            - name: Build JAR
-              run: mvn clean package -DskipTests
 
-            # Start Docker services in the background
-            - name: Start Docker Compose
-              run: docker compose up -d
+      # Build JAR without running tests yet
+      - name: Build JAR
+        run: mvn clean package -DskipTests
 
-            # Wait for the database to be ready
-            - name: Wait for DB
-              run: |
-                echo "Waiting 15s for DB to be ready..."
-                sleep 15
+      # Start Docker services in the background
+      - name: Start Docker Compose
+        run: docker compose up -d
 
-            # Run integration tests
-            - name: Run Tests
-              run: mvn test
+      # Wait for the database to be ready, else it may retry 100 times before loading tests.
+      - name: Wait for DB
+        run: |
+          echo "Waiting 15s for DB to be ready..."
+          sleep 15
 
-            # Optional: view surefire test results
-            - name: Show Test Results
-              run: cat target/surefire-reports/*.txt || true
+      # Run integration tests
+      - name: Run Tests
+        run: mvn test
 
-            # Optional: shut down Docker containers after tests
-            - name: Stop Docker Compose
-              run: docker compose down
-      #- name: view logs
-       # run: docker logs set08103-group-1
+      # View surefire test results
+      - name: Show Test Results
+        run: cat target/surefire-reports/*.txt || true
+
+      # Shut down Docker containers after tests
+      - name: Stop Docker Compose
+        run: docker compose down
