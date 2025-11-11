@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 /** PopulationReports Class - generates all population reports
  * @author Stuart C. Alexander ESQ.
- * @date 04/11/2025
+ * @since Nov 2025
  */
 public class PopulationReports {
 
@@ -33,19 +33,25 @@ public class PopulationReports {
         this.cont = cont;
     }
 
-    /** Returns heading format
+    /** Returns heading format forPop Reports Output
      * @return headingFormat
      */
     public String getHeadings() {
+
         return headingFormat;
     }
 
+    /** This method returns the filename to be written to for Population Reports
+     * @return filename
+     */
     public String getFilename() {
+
         return filename;
     }
 
     /** getWorldPopulation - A Method for querying the database and returning the table row for 'World' in the Population Reports.md
      * @author Stuart C. Alexander
+     * @since Nov 2025
      * @return String value containing data for world population
      */
     public String getWorldPopulation() {
@@ -55,8 +61,8 @@ public class PopulationReports {
 
         try {
             /// Result sets to store query results (CHANGE FROM .runQueryLocal TO .runQuery AFTER TESTING)
-            ResultSet worldData = cont.runQuery(query + "country;");
-            ResultSet cityData = cont.runQuery(query + "city;");
+            ResultSet worldData = cont.runQueryLocal(query + "country;");
+            ResultSet cityData = cont.runQueryLocal(query + "city;");
 
             /// BigIntegers required to deal with billions
             BigInteger worldPop = null;
@@ -90,7 +96,11 @@ public class PopulationReports {
         /// Return string containing all values
         return ("|" + name + " | " + population + " | " +  totalCity + " | " + percentCity + "% | " + notCity + " | " + percentNot + "% |\r\n");
     }
-
+    /** getWorldPopulation - A Method for querying the database and returning the table rows for 'Continents', 'Regions' and 'countries' in the Population Reports.md
+     * @author Stuart C. Alexander
+     * @since Nov 2025
+     * @return String value containing data for world population
+     */
     public ArrayList<String> getPopulation(String type) {
 
         ArrayList<String> results = new ArrayList<>();
@@ -103,9 +113,10 @@ public class PopulationReports {
         float smallerPop = 0.00f;
         float smallerCity = 0.00f;
 
+        /// Tries to process the data from the two queries and works out city dwellers/ non-city dwellers and percentages.
         try {
             /// Result set to store query results (CHANGE FROM .runQueryLocal TO .runQuery AFTER TESTING)
-            ResultSet worldData = cont.runQuery("SELECT " + type + ", SUM(Population) as pop FROM country GROUP BY " + type + ";");
+            ResultSet worldData = cont.runQueryLocal("SELECT " + type + ", SUM(Population) as pop FROM country GROUP BY " + type + ";");
             while (worldData.next()) {
                 name = worldData.getString(type);
                 worldPop = BigInteger.valueOf(worldData.getLong("pop"));
@@ -113,7 +124,7 @@ public class PopulationReports {
                 smallerPop = Math.round(worldPop.divide(BigInteger.valueOf(100)).floatValue());
 
                 /// Result set to store query results (CHANGE FROM .runQueryLocal TO .runQuery AFTER TESTING)
-                ResultSet cityData = cont.runQuery("SELECT SUM(c.Population) AS pop FROM city c JOIN country co ON c.CountryCode = co.Code WHERE co." + type + " = '" + name + "';");
+                ResultSet cityData = cont.runQueryLocal("SELECT SUM(c.Population) AS pop FROM city c JOIN country co ON c.CountryCode = co.Code WHERE co." + type + " = '" + name + "';");
                 while (cityData.next()) {
                     cityPop = BigInteger.valueOf(cityData.getLong("pop"));
                     totalCity = bigNumFormat.format(cityPop);
@@ -126,7 +137,7 @@ public class PopulationReports {
                 }
                 results.add("|" + name + " | " + population + " | " +  totalCity + " | " + percentCity + "% | " + notCity + " | " + percentNot + "% |\r\n");
             }
-
+            ///  Catch SQL exception and print sysout message
         } catch (SQLException e) {
             System.out.println(e.getMessage() + "\nQuery Failed!");
         }

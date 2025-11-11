@@ -4,26 +4,27 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.math.BigInteger;
 import java.sql.*;
 import java.util.ArrayList;
 
-/** A Controller Method for Interacting with the database, and running queries
+/** A Controller Class for interacting with the database container
  * @author Stuart C.Alexander
  * @since Oct 2025
  */
 public class Controller {
 
+    /// Class wide variables;
     Controller cont;
     Queries queries;
     PopulationReports popReports;
-
     Connection conn;
-    /** Constructor
+
+    /** Constructor - Creates a new instance of queries, assigns itself(this) as the class wide wariable 'cont'
+     * ... to pass to other classes, and creates a new instance of the population reports class.
      * @author Stuart C.Alexander
      * @since Nov 2025
      */
-    public Controller() throws SQLException {
+    public Controller() {
         cont = this;
         queries = new Queries();
         popReports = new PopulationReports(cont);
@@ -36,20 +37,21 @@ public class Controller {
      * @param category
      * @throws SQLException
      */
-//    public void runTestQuery(String query, String category) throws SQLException {
-//            ResultSet result = null;
-//            try {
-//                Connection conn = DriverManager.getConnection("jdbc:mysql://db:3306/world?useSSL=false&allowPublicKeyRetrieval=true", "root", "example");
-//                PreparedStatement stmt = conn.prepareStatement(query);
-//                result = stmt.executeQuery();
-//                while (result.next()) {
-//                    System.out.println(result.getString(category));
-//                }
-//            } catch (SQLException e) {
-//                e.printStackTrace();
-//                throw e;
-//            }
-//    }
+    public void runTestQuery(String query, String category) throws SQLException {
+        ResultSet result = null;
+        try {
+            Connection conn = DriverManager.getConnection("jdbc:mysql://db:3306/world?useSSL=false&allowPublicKeyRetrieval=true", "root", "example");
+            PreparedStatement stmt = conn.prepareStatement(query);
+            result = stmt.executeQuery();
+            while (result.next()) {
+                System.out.println(result.getString(category));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw e;
+        }
+
+    }
 
     /** testQuery - This method contains a query that selects each of the continents contained in the database, and passes it to run test query.
      * @author Stuart C. Alexander
@@ -270,6 +272,7 @@ public class Controller {
                 // Wait a bit
                 Thread.sleep(1000);
                 Menu menu = new Menu(this);
+                conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:33060/world?useSSL=false&allowPublicKeyRetrieval=true", "root", "example");
                 menu.printMainMenu();
                 // Exit for loop
                 break;
