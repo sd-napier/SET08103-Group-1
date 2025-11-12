@@ -4,8 +4,6 @@ import com.napier.sem.Controller;
 import com.napier.sem.PopulationReports;
 import org.testng.annotations.Test;
 
-import java.sql.SQLException;
-
 import static org.testng.AssertJUnit.assertEquals;
 import static org.testng.AssertJUnit.assertNotNull;
 
