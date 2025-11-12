@@ -16,10 +16,10 @@ public class App
         Controller cont = new Controller();
 
         ///  This controller method is used for deployment, using correct connection parameters for the docker container. (ALL queries must run method 'runQuery()' on 'db:3306')
-        //cont.dockerTestConnection();
+        cont.dockerTestConnection();
 
         ///  This controller method is used in development, to allow us to connect to the database locally. (ALL queries must run method 'runQueryLocal()' on '127.0.0.1:33060')
-        cont.LocalTestConnection();
+        //cont.LocalTestConnection();
 
     }
 
