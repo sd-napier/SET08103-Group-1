@@ -36,6 +36,7 @@
     </dependencies>
 
     <build>
+        <directory>./target</directory>
         <plugins>
             <plugin>
                 <artifactId>maven-jar-plugin</artifactId>
@@ -43,7 +44,7 @@
                 <executions>
                     <execution>
                         <id>default-jar</id>
-                        <!--  skip building the default-jar -->
+                        <!-- skip building the default-jar -->
                         <phase>none</phase>
                     </execution>
                 </executions>

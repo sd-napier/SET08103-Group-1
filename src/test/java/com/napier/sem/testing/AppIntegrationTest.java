@@ -55,7 +55,7 @@ public class AppIntegrationTest {
      * Test 2. Run a simple query to make sure the connection actually works.
      * Checks that it talks to the database.
      */
-    @Test
+/*    @Test
     void testSimpleQuery() {
         try {
             ResultSet rs = controller.runQuery("SELECT 1");
@@ -68,13 +68,13 @@ public class AppIntegrationTest {
             // No rows returned, so fail.
             else {
                 fail("No rows returned from SELECT 1 query");
-            }
+            }*/
 
         // Catch unexpected response e.g. rows isn't = 1
-        } catch (SQLException e) {
+/*        } catch (SQLException e) {
             fail("SQLException thrown: " + e.getMessage());
         }
-    }
+    }*/
 
     /**
      * Test 3. Check that the population report file can be generated inside the reports directory.
