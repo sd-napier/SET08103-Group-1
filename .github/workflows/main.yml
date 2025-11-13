@@ -32,6 +32,9 @@ jobs:
       - name: Run tests
         run: npx jest --coverage
 
+      - name: Generate JUnit tests
+        run: npm i --save-dev jest-junit JEST_JUNIT_CLASSNAME="{filepath}" jest --reporters=jest-junit
+
   IntegrationTests:
     name: Integration Tests
     runs-on: ubuntu-22.04
