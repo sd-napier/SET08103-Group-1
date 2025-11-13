@@ -16,9 +16,6 @@ import static org.testng.AssertJUnit.*;
  * @since Nov 2025
  */
 public class UnitTests {
-    public UnitTests(){
-
-    }
 
     /// Test Controller instantiation
     @Test
