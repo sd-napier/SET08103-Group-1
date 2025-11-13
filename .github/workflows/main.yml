@@ -22,7 +22,7 @@ jobs:
           java-version: '17'
           distribution: 'adopt'
       - name: Unit Tests
-        run: mvn -Dtest=com.napier.sem.testing.UnitTests test
+        run: mvn -test=com.napier.sem.testing.UnitTests test
       - name: Set up Node
         uses: actions/setup-node@v4
 
