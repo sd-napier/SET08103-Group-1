@@ -26,14 +26,14 @@ jobs:
       - name: Set up Node
         uses: actions/setup-node@v4
 
-#      - name: Install dependencies
-#        run: npm install --save-dev jest
-#
-#      - name: Run tests
-#        run: npx jest --coverage
-#
-#      - name: Generate JUnit tests
-#        run: npm i --save-dev jest-junit JEST_JUNIT_CLASSNAME="{filepath}" jest --reporters=jest-junit
+      - name: Install dependencies
+        run: npm install --save-dev jest
+
+      - name: Run tests
+        run: npx jest --coverage
+
+      - name: Generate JUnit tests
+        run: npm i --save-dev jest-junit JEST_JUNIT_CLASSNAME="{filepath}" jest --reporters=jest-junit
 
   IntegrationTests:
     name: Integration Tests
