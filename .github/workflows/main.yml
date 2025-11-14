@@ -3,7 +3,8 @@ name: Coursework_Workflow
 on:
   push:
     branches:
-      - Master
+      - master
+      - develop
       - Feature
       - CIntegrationInfra
 
