@@ -225,7 +225,6 @@ OCEANIA
 ANTARCTICA
 | Code | Name | Continent | Region | Population | Capital |
 | --- | --- | --- | --- | --- | --- |
-| --- | --- | --- | --- | --- | --- |
 (By Region)
 CARIBBEAN
 | Code | Name | Continent | Region | Population | Capital |
@@ -354,7 +353,6 @@ POLYNESIA
 | PCN | Pitcairn | Oceania | Polynesia | 50 | Adamstown|
 ANTARCTICA
 | Code | Name | Continent | Region | Population | Capital |
-| --- | --- | --- | --- | --- | --- |
 | --- | --- | --- | --- | --- | --- |
 AUSTRALIA AND NEW ZEALAND
 | Code | Name | Continent | Region | Population | Capital |
