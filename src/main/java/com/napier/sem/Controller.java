@@ -19,6 +19,7 @@ public class Controller {
 //    private Queries queries;
     private PopulationReports popReports;
     private LanguageReports langReports;
+    private CountryReports coReports;
     private Connection conn;
 
     /** Constructor - Creates a new instance of queries, assigns itself(this) as the class wide wariable 'cont'
@@ -32,6 +33,7 @@ public class Controller {
         //queries = new Queries();
         popReports = new PopulationReports(cont);
         langReports = new LanguageReports(cont);
+        coReports = new CountryReports(cont);
 
     }
 
@@ -130,7 +132,7 @@ public class Controller {
         for (String country : countries) {
             output.append(country);
         }
-
+        System.out.println("PRINTING...");
         /// sends data and filename to the .md printer
         printToFile(popReports.getFilename(), output );
     }
@@ -149,9 +151,70 @@ public class Controller {
         for (String language : languages) {
             output.append(language);
         }
-
+        System.out.println("PRINTING...");
         printToFile(langReports.getFilename(), output );
     }
+
+    /** Assembles the country reports and sends them to the printer
+     * @author Stuart C. Alexander
+     * @since Nov 2025
+     * @param limit - passed in value for user defined N
+     */
+    public void countryReports(int limit) {
+
+        StringBuilder output = new StringBuilder();
+        output.append("Country Reports\r\n");
+        output.append("| --- | --- | --- | --- | --- | --- |\r\n");
+        output.append("(World)\r\n");
+        output.append("| --- | --- | --- | --- | --- | --- |\r\n");
+
+        /// All the countries in the world organised by largest population to smallest.
+        ArrayList<String> world = coReports.getCountryReportWorld(limit);
+        for (String country : world) {
+            output.append(country);
+        }
+
+        /// All the countries in a continent organised by largest population to smallest.
+        output.append("| --- | --- | --- | --- | --- | --- |\r\n");
+        output.append("(By Continent)\r\n");
+        ArrayList<String> continents = getContinentNames();
+
+        for (String continent : continents) {
+            output.append("| --- | --- | --- | --- | --- | --- |\r\n");
+            output.append("----------" + continent.toUpperCase() +  "----------\r\n");
+            output.append("| --- | --- | --- | --- | --- | --- |\r\n");
+
+            ArrayList<String> byContinent = coReports.getCountryReportContinent(continent, limit);
+
+            output.append(byContinent);
+        }
+
+        /// All the countries in a region organised by largest population to smallest.
+        output.append("| --- | --- | --- | --- | --- | --- |\r\n");
+        output.append("(By Region)\r\n");
+        ArrayList<String> regions = getRegionNames();
+
+        for (String region : regions) {
+            output.append("| --- | --- | --- | --- | --- | --- |\r\n");
+            output.append("----------" + region.toUpperCase() + "----------\r\n");
+            output.append("| --- | --- | --- | --- | --- | --- |\r\n");
+
+            ArrayList<String> byRegion = coReports.getCountryReportRegion(region, limit);
+
+            output.append(byRegion);
+        }
+        System.out.println("PRINTING...");
+        printToFile(coReports.getFilename(), output);
+    }
+
+
+
+
+
+
+
+
+
 
 
     /**
@@ -267,8 +330,33 @@ public class Controller {
 //
 //
 
+    public ArrayList<String> getContinentNames() {
+        ArrayList<String> continents = new ArrayList<>();
+        try {
+            /// Result set to store query results (CHANGE FROM .runQueryLocal TO .runQuery AFTER TESTING)
+            ResultSet allContinents = runQueryLocal("SELECT DISTINCT Continent FROM country");
+            while (allContinents.next()) {
+                continents.add(allContinents.getString("Continent"));
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage() + "\nFAILED TO GET ALL CONTINENTS IN CONTROLLER METHOD");
+        }
+        return continents;
+    }
 
-
+    public ArrayList<String> getRegionNames() {
+        ArrayList<String> regions = new ArrayList<>();
+        try {
+            /// Result set to store query results (CHANGE FROM .runQueryLocal TO .runQuery AFTER TESTING)
+            ResultSet allRegions = runQueryLocal("SELECT DISTINCT Region FROM country");
+            while (allRegions.next()) {
+                regions.add(allRegions.getString("Region"));
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage() + "\nFAILED TO GET ALL REGIONS IN CONTROLLER METHOD");
+        }
+        return regions;
+    }
 
 
 

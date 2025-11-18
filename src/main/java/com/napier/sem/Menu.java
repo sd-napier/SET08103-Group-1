@@ -58,7 +58,8 @@ public class Menu {
                     System.out.println("Test Capital Reports");
                     break; // break out of while loop
                 case 4:
-                    System.out.println("Test Country Reports");
+                    int N = input.getN();
+                    cont.countryReports(N);
                     break; // break out of while loop
                 case 5:
                     cont.languageReports();
