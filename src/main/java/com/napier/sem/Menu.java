@@ -72,7 +72,7 @@ public class Menu {
                             """);
                     break;
                 default:
-                    System.out.println("Invalid Selection! --> Please enter a selection: ");
+                    System.out.println("Invalid Selection!");
             }
         }
     }
