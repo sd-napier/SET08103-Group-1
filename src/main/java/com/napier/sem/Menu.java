@@ -14,11 +14,11 @@ public class Menu {
     public Menu(Controller controller) {
         cont = controller;
         System.out.println("""
+                      |-----------------------------------------------------------------------------------------------------------/
+                      |----- POPULATION REPORTS -------- v1.0 -------------------------------------------------------------------/
                       |---------------------------------------------------------------------------------------------------------/
-                      |----- POPULATION REPORTS -------- v1.0 -----------------------------------------------------------------/
+                      | - Coded by : -- Stuart Alexander, Socrates Davidopoulos, Alan Glowacz & Dominic Benell ----------------/
                       |-------------------------------------------------------------------------------------------------------/
-                      | - Coded by : -- Stuart Alexander, Socrates Davidopoulos, Alan Glowacz & Dominic Benell --------------/
-                      |-----------------------------------------------------------------------------------------------------/
                       """);
     }
 
@@ -44,7 +44,7 @@ public class Menu {
         while(running) {
 
             System.out.print("--> Please enter a selection: ");
-            int choice = Integer.parseInt(input.getInput().nextLine());
+            int choice = input.getInteger();
 
             switch(choice) {
                 case 1: // Print Population Reports
@@ -65,6 +65,11 @@ public class Menu {
                     break; // break out of while loop
                 case 6:
                     running = false;
+                    System.out.println("""
+                            |------------------------------------------------------------------------------------------------------|
+                            |------------------------------------------ GOODBYE! --------------------------------------------------|
+                            |------------------------------------------------------------------------------------------------------|
+                            """);
                     break;
                 default:
                     System.out.println("Invalid Selection! --> Please enter a selection: ");
