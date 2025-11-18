@@ -23,7 +23,8 @@ jobs:
           java-version: '17'
           distribution: 'adopt'
       - name: Unit Tests
-        run: mvn -Dtest=com.napier.sem.testing.UnitTests test
+        run: apt update && apt install nodejs && sudo apt install npm
+             mvn -Dtest=com.napier.sem.testing.UnitTests test
       - name: Set up Node
         uses: actions/setup-node@v4
 
