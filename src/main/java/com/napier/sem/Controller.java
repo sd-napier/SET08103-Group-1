@@ -14,11 +14,12 @@ import java.util.ArrayList;
 public class Controller {
 
     /// Class wide variables;
-    IO input;
-    Controller cont;
-    Queries queries;
-    PopulationReports popReports;
-    Connection conn;
+    private IO input;
+    private Controller cont;
+//    private Queries queries;
+    private PopulationReports popReports;
+    private LanguageReports langReports;
+    private Connection conn;
 
     /** Constructor - Creates a new instance of queries, assigns itself(this) as the class wide wariable 'cont'
      * ... to pass to other classes, and creates a new instance of the population reports class.
@@ -27,82 +28,74 @@ public class Controller {
      */
     public Controller() {
         cont = this;
-        queries = new Queries();
-        popReports = new PopulationReports(cont);
         input = new IO();
-    }
-
-    /** runQuery Method - runs a passed in query(String query), and prints the results from a defined column(String category)
-     * @author Stuart C. Alexander
-     * @since Oct 2025
-     * @param query
-     * @param category
-     * @throws SQLException
-     */
-    public void runTestQuery(String query, String category) throws SQLException {
-        ResultSet result = null;
-        try {
-            Connection conn = DriverManager.getConnection("jdbc:mysql://db:3306/world?useSSL=false&allowPublicKeyRetrieval=true", "root", "example");
-            PreparedStatement stmt = conn.prepareStatement(query);
-            result = stmt.executeQuery();
-            while (result.next()) {
-                System.out.println(result.getString(category));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-            throw e;
-        }
+        //queries = new Queries();
+        popReports = new PopulationReports(cont);
+        langReports = new LanguageReports(cont);
 
     }
 
-    /**
-     * small function to receive input, parse into integer and apply default if necessary
-     * @return n = user input
-     */
-    public int getN() {
-        System.out.print("→ Please enter a number (press Enter for default 32): ");
-        int n = input.getInteger();   // returns 0 if blank/invalid
-        if (n <= 0) n = 32;           // default to 32
-        return n;
-    }
+//    /** runQuery Method - runs a passed in query(String query),
+//     * and prints the results from a defined column(String category)
+//     * @author Stuart C. Alexander
+//     * @since Oct 2025
+//     * @param query
+//     * @param category
+//     */
+//    public void runTestQuery(String query, String category) {
+//        ResultSet result = null;
+//        try {
+//            Connection conn = DriverManager.getConnection("jdbc:mysql://db:3306/world?useSSL=false&allowPublicKeyRetrieval=true", "root", "example");
+//            PreparedStatement stmt = conn.prepareStatement(query);
+//            result = stmt.executeQuery();
+//            while (result.next()) {
+//                System.out.println(result.getString(category));
+//            }
+//        } catch (SQLException e) {
+//            System.out.println(e.getMessage() + "RUN TEST QUERY FAILED!");
+//            e.printStackTrace();
+//        }
+//
+//    }
 
-
-    /** testQuery - This method contains a query that selects each of the continents contained in the database, and passes it to run test query.
-     * @author Stuart C. Alexander
-     * @since Oct 2025
-     * @throws SQLException
-     */
-//    public void testQuery() throws SQLException {
+//    /** testQuery - This method contains a query that selects each of the continents contained in the database, and passes it to run test query.
+//     * @author Stuart C. Alexander
+//     * @since Oct 2025
+//     */
+//    public void testQuery() {
 //        String testQuery = "SELECT DISTINCT Continent FROM country;";
 //        String category  = "Continent";
 //
 //        runTestQuery(testQuery, category);
 //
 //    }
-    public ResultSet runQuery(String query) throws SQLException {
+    public ResultSet runQuery(String query) {
         ResultSet result = null;
         try {
             PreparedStatement stmt = conn.prepareStatement(query);
             result = stmt.executeQuery();
         } catch (SQLException e) {
+            System.out.println(e.getMessage() + "Failed to Run Query from Docker deployed App!");
             e.printStackTrace();
         }
         return result;
     }
 
-    public ResultSet runQueryLocal(String query) throws SQLException {
+    public ResultSet runQueryLocal(String query) {
         ResultSet result = null;
         try {
             PreparedStatement stmt = conn.prepareStatement(query);
             result = stmt.executeQuery();
         } catch (SQLException e) {
+            System.out.println(e.getMessage() + "Failed to Run Query from IntelliJ(Local) App!");
             e.printStackTrace();
         }
         return result;
     }
 
-    /** Assembles the population reports
-     *
+    /** Assembles the population reports and sends them to printer method
+     * @author Stuart C. Alexander
+     * @since Nov 2025
      */
     public void populationReports() {
         StringBuilder output = new StringBuilder();
@@ -138,17 +131,28 @@ public class Controller {
             output.append(country);
         }
 
-
+        /// sends data and filename to the .md printer
         printToFile(popReports.getFilename(), output );
     }
 
-    /** Method to write population reports
-     *
+    /** Assembles the language reports and sends them to printer method
+     * @author Stuart C. Alexander
+     * @since Nov 2025
      */
-    public void outputPopulationReports() {
+    public void languageReports() {
+        StringBuilder output = new StringBuilder();
+        output.append("Language Reports\r\n");
+        output.append(langReports.getHeadingFormat());
+        output.append("| --- | --- | --- | --- | --- | --- |\r\n");
 
+        ArrayList<String> languages = langReports.getLanguageReport();
+        for (String language : languages) {
+            output.append(language);
+        }
 
+        printToFile(langReports.getFilename(), output );
     }
+
 
     /**
      * Generates and outputs various city reports to a Markdown file.
@@ -233,31 +237,46 @@ public class Controller {
         }
     }
 
-    /** Method to write all the Capital Reports
-     *
+    /**
+     * small function to receive input, parse into integer and apply default if necessary
+     * @return n = user input
      */
-    public void outputCapitalReports() {
-        String filename = "capitalReports.md";
-        String headings = "";
+    public int getN() {
+        System.out.print("→ Please enter a number (press Enter for default 32): ");
+        int n = input.getInteger();   // returns 0 if blank/invalid
+        if (n <= 0) n = 32;           // default to 32
+        return n;
     }
 
-    /** Method to write all the Country reports
-     *
-     */
-    public void outputCountryReports() {
-        String filename = "countryReports.md";
-        String headings = "";
-    }
+//    /** Method to write all the Capital Reports
+//     *
+//     */
+//    public void outputCapitalReports() {
+//        String filename = "capitalReports.md";
+//        String headings = "";
+//    }
+//
+//    /** Method to write all the Country reports
+//     *
+//     */
+//    public void outputCountryReports() {
+//        String filename = "countryReports.md";
+//        String headings = "";
+//    }
+//
+//
+//
 
-    /** Method to write all the language reports
-     *
-     */
-    public void outputLanguageReports() {
-        String filename = "languageReports.md";
-        String headings = "";
-    }
+
+
+
+
 
     /** Print to .md file
+     * @author Stuart C. Alexander
+     * @since Nov 2025
+     * @param filename the filename to be written to
+     * @param data the assembled report stringbuilder to be printed into .md
      *
      */
     public void printToFile(String filename, StringBuilder data) {

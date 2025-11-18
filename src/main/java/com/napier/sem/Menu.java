@@ -39,10 +39,11 @@ public class Menu {
                       - 4 - Print Country Reports
                       - 5 - Print Language Reports
                       - 6 - Exit Application""");
-        System.out.print("--> Please enter a selection: ");
+
 
         while(running) {
 
+            System.out.print("--> Please enter a selection: ");
             int choice = Integer.parseInt(input.getInput().nextLine());
 
             switch(choice) {
@@ -50,7 +51,6 @@ public class Menu {
                     cont.populationReports();
                     break; // break out of while loop
                 case 2:
-                    System.out.println("Test City Reports");
                     int n = cont.getN();
                     cont.outputCityReports(n);
                     break; // break out of while loop
@@ -61,7 +61,7 @@ public class Menu {
                     System.out.println("Test Country Reports");
                     break; // break out of while loop
                 case 5:
-                    System.out.println("Test Language Reports");
+                    cont.languageReports();
                     break; // break out of while loop
                 case 6:
                     running = false;

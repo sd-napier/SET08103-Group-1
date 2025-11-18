@@ -13,22 +13,20 @@ import java.util.ArrayList;
 public class PopulationReports {
 
     /// Class Variables
-    Controller cont;
+    private Controller cont;
     private String filename = "populationReports.md";
-    String headingFormat = "| Name | Population | Total in Cities | % in Cities | Not in cities | % not in cities |\r\n";
+    private String headingFormat = "| Name | Population | Total in Cities | % in Cities | Not in cities | % not in cities |\r\n";
 
     ///  Variables for holding column info
-    String name;
-    String population;
-    String totalCity;
-    String percentCity;
-    String notCity;
-    String percentNot;
-    DecimalFormat bigNumFormat = new DecimalFormat("#,###");
+    private String name;
+    private String population;
+    private String totalCity;
+    private String percentCity;
+    private String notCity;
+    private String percentNot;
+    private DecimalFormat bigNumFormat = new DecimalFormat("#,###");
 
-    /** Constructor
-     *
-     */
+    /// Constructor
     public PopulationReports(Controller cont) {
         this.cont = cont;
     }
@@ -91,7 +89,7 @@ public class PopulationReports {
             percentCity = String.format("%.2f", perCity);
             percentNot = String.format("%.2f", perNotCity);
         } catch (SQLException e) {
-            System.out.println(e.getMessage() + "\nQuery Failed!");
+            System.out.println(e.getMessage() + "\nPOPULATION REPORT QUERY FAILED!");
         }
         /// Return string containing all values
         return ("|" + name + " | " + population + " | " +  totalCity + " | " + percentCity + "% | " + notCity + " | " + percentNot + "% |\r\n");

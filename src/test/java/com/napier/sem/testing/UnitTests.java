@@ -5,8 +5,6 @@ import com.napier.sem.CityRow;
 import com.napier.sem.Controller;
 import com.napier.sem.PopulationReports;
 import org.junit.jupiter.api.Test;
-
-import java.sql.SQLException;
 import java.util.List;
 
 import static org.testng.AssertJUnit.*;
