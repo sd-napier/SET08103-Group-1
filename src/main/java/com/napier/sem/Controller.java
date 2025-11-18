@@ -187,8 +187,9 @@ public class Controller {
             output.append(coReports.getHeadingFormat());
 
             ArrayList<String> byContinent = coReports.getCountryReportContinent(continent, limit);
-
-            output.append(byContinent);
+            for(String row : byContinent) {
+                output.append(row);
+            }
         }
 
         /// All the countries in a region organised by largest population to smallest.
@@ -203,8 +204,9 @@ public class Controller {
             output.append(coReports.getHeadingFormat());
 
             ArrayList<String> byRegion = coReports.getCountryReportRegion(region, limit);
-
-            output.append(byRegion);
+            for(String row : byRegion) {
+                output.append(row);
+            }
         }
         System.out.println("PRINTING...");
         printToFile(coReports.getFilename(), output);
