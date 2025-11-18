@@ -167,6 +167,7 @@ public class Controller {
         output.append("| --- | --- | --- | --- | --- | --- |\r\n");
         output.append("(World)\r\n");
         output.append("| --- | --- | --- | --- | --- | --- |\r\n");
+        output.append(coReports.getHeadingFormat());
 
         /// All the countries in the world organised by largest population to smallest.
         ArrayList<String> world = coReports.getCountryReportWorld(limit);
@@ -181,8 +182,9 @@ public class Controller {
 
         for (String continent : continents) {
             output.append("| --- | --- | --- | --- | --- | --- |\r\n");
-            output.append("----------" + continent.toUpperCase() +  "----------\r\n");
+            output.append(continent.toUpperCase() + "\r\n");
             output.append("| --- | --- | --- | --- | --- | --- |\r\n");
+            output.append(coReports.getHeadingFormat());
 
             ArrayList<String> byContinent = coReports.getCountryReportContinent(continent, limit);
 
@@ -196,8 +198,9 @@ public class Controller {
 
         for (String region : regions) {
             output.append("| --- | --- | --- | --- | --- | --- |\r\n");
-            output.append("----------" + region.toUpperCase() + "----------\r\n");
+            output.append(region.toUpperCase() + "\r\n");
             output.append("| --- | --- | --- | --- | --- | --- |\r\n");
+            output.append(coReports.getHeadingFormat());
 
             ArrayList<String> byRegion = coReports.getCountryReportRegion(region, limit);
 
