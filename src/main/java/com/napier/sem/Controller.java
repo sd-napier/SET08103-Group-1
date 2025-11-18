@@ -143,7 +143,7 @@ public class Controller {
         StringBuilder output = new StringBuilder();
         output.append("Language Reports\r\n");
         output.append(langReports.getHeadingFormat());
-        output.append("| --- | --- | --- | --- | --- | --- |\r\n");
+        output.append("| --- | --- | --- |\r\n");
 
         ArrayList<String> languages = langReports.getLanguageReport();
         for (String language : languages) {

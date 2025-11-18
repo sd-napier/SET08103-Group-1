@@ -56,7 +56,7 @@ public class LanguageReports {
                 language = data.getString("Language");
                 totalSpeakers = data.getInt("TotalSpeakers");
                 totalPercentage = data.getFloat("Percent");
-                results.add("|" + language + "|" + totalSpeakers + "|" + totalPercentage + "% |\r\n");
+                results.add("| " + language + " | " + totalSpeakers + " | " + totalPercentage + "% |\r\n");
             }
         } catch (SQLException e){
             System.out.println(e.getMessage() + "\nLANGUAGE REPORT QUERY FAILED!");
