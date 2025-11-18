@@ -1,7 +1,5 @@
 Country Reports
-| --- | --- | --- | --- | --- | --- |
 (World)
-| --- | --- | --- | --- | --- | --- |
 | Code | Name | Continent | Region | Population | Capital |
 | --- | --- | --- | --- | --- | --- |
 | CHN | China | Asia | Eastern Asia | 1277558000 | Peking|
@@ -36,11 +34,8 @@ Country Reports
 | POL | Poland | Europe | Eastern Europe | 38653600 | Warszawa|
 | ARG | Argentina | South America | South America | 37032000 | Buenos Aires|
 | TZA | Tanzania | Africa | Eastern Africa | 33517000 | Dodoma|
-| --- | --- | --- | --- | --- | --- |
 (By Continent)
-| --- | --- | --- | --- | --- | --- |
 NORTH AMERICA
-| --- | --- | --- | --- | --- | --- |
 | Code | Name | Continent | Region | Population | Capital |
 | --- | --- | --- | --- | --- | --- |
 | USA | United States | North America | North America | 278357000 | Washington|
@@ -75,9 +70,7 @@ NORTH AMERICA
 | GRL | Greenland | North America | North America | 56000 | Nuuk|
 | KNA | Saint Kitts and Nevis | North America | Caribbean | 38000 | Basseterre|
 | CYM | Cayman Islands | North America | Caribbean | 38000 | George Town|
-| --- | --- | --- | --- | --- | --- |
 ASIA
-| --- | --- | --- | --- | --- | --- |
 | Code | Name | Continent | Region | Population | Capital |
 | --- | --- | --- | --- | --- | --- |
 | CHN | China | Asia | Eastern Asia | 1277558000 | Peking|
@@ -112,9 +105,7 @@ ASIA
 | TJK | Tajikistan | Asia | Southern and Central Asia | 6188000 | Dushanbe|
 | LAO | Laos | Asia | Southeast Asia | 5433000 | Vientiane|
 | JOR | Jordan | Asia | Middle East | 5083000 | Amman|
-| --- | --- | --- | --- | --- | --- |
 AFRICA
-| --- | --- | --- | --- | --- | --- |
 | Code | Name | Continent | Region | Population | Capital |
 | --- | --- | --- | --- | --- | --- |
 | NGA | Nigeria | Africa | Western Africa | 111506000 | Abuja|
@@ -149,9 +140,7 @@ AFRICA
 | BDI | Burundi | Africa | Eastern Africa | 6695000 | Bujumbura|
 | BEN | Benin | Africa | Western Africa | 6097000 | Porto-Novo|
 | LBY | Libyan Arab Jamahiriya | Africa | Northern Africa | 5605000 | Tripoli|
-| --- | --- | --- | --- | --- | --- |
 EUROPE
-| --- | --- | --- | --- | --- | --- |
 | Code | Name | Continent | Region | Population | Capital |
 | --- | --- | --- | --- | --- | --- |
 | RUS | Russian Federation | Europe | Eastern Europe | 146934000 | Moscow|
@@ -186,9 +175,7 @@ EUROPE
 | LTU | Lithuania | Europe | Baltic Countries | 3698500 | Vilnius|
 | ALB | Albania | Europe | Southern Europe | 3401200 | Tirana|
 | LVA | Latvia | Europe | Baltic Countries | 2424200 | Riga|
-| --- | --- | --- | --- | --- | --- |
 SOUTH AMERICA
-| --- | --- | --- | --- | --- | --- |
 | Code | Name | Continent | Region | Population | Capital |
 | --- | --- | --- | --- | --- | --- |
 | BRA | Brazil | South America | South America | 170115000 | Brasília|
@@ -205,9 +192,7 @@ SOUTH AMERICA
 | SUR | Suriname | South America | South America | 417000 | Paramaribo|
 | GUF | French Guiana | South America | South America | 181000 | Cayenne|
 | FLK | Falkland Islands | South America | South America | 2000 | Stanley|
-| --- | --- | --- | --- | --- | --- |
 OCEANIA
-| --- | --- | --- | --- | --- | --- |
 | Code | Name | Continent | Region | Population | Capital |
 | --- | --- | --- | --- | --- | --- |
 | AUS | Australia | Oceania | Australia and New Zealand | 18886000 | Canberra|
@@ -237,16 +222,11 @@ OCEANIA
 | NIU | Niue | Oceania | Polynesia | 2000 | Alofi|
 | CCK | Cocos (Keeling) Islands | Oceania | Australia and New Zealand | 600 | West Island|
 | PCN | Pitcairn | Oceania | Polynesia | 50 | Adamstown|
-| --- | --- | --- | --- | --- | --- |
 ANTARCTICA
-| --- | --- | --- | --- | --- | --- |
 | Code | Name | Continent | Region | Population | Capital |
 | --- | --- | --- | --- | --- | --- |
-| --- | --- | --- | --- | --- | --- |
 (By Region)
-| --- | --- | --- | --- | --- | --- |
 CARIBBEAN
-| --- | --- | --- | --- | --- | --- |
 | Code | Name | Continent | Region | Population | Capital |
 | --- | --- | --- | --- | --- | --- |
 | CUB | Cuba | North America | Caribbean | 11201000 | La Habana|
@@ -273,9 +253,7 @@ CARIBBEAN
 | TCA | Turks and Caicos Islands | North America | Caribbean | 17000 | Cockburn Town|
 | MSR | Montserrat | North America | Caribbean | 11000 | Plymouth|
 | AIA | Anguilla | North America | Caribbean | 8000 | The Valley|
-| --- | --- | --- | --- | --- | --- |
 SOUTHERN AND CENTRAL ASIA
-| --- | --- | --- | --- | --- | --- |
 | Code | Name | Continent | Region | Population | Capital |
 | --- | --- | --- | --- | --- | --- |
 | IND | India | Asia | Southern and Central Asia | 1013662000 | New Delhi|
@@ -292,9 +270,7 @@ SOUTHERN AND CENTRAL ASIA
 | TKM | Turkmenistan | Asia | Southern and Central Asia | 4459000 | Ashgabat|
 | BTN | Bhutan | Asia | Southern and Central Asia | 2124000 | Thimphu|
 | MDV | Maldives | Asia | Southern and Central Asia | 286000 | Male|
-| --- | --- | --- | --- | --- | --- |
 CENTRAL AFRICA
-| --- | --- | --- | --- | --- | --- |
 | Code | Name | Continent | Region | Population | Capital |
 | --- | --- | --- | --- | --- | --- |
 | COD | Congo, The Democratic Republic of the | Africa | Central Africa | 51654000 | Kinshasa|
@@ -306,9 +282,7 @@ CENTRAL AFRICA
 | GAB | Gabon | Africa | Central Africa | 1226000 | Libreville|
 | GNQ | Equatorial Guinea | Africa | Central Africa | 453000 | Malabo|
 | STP | Sao Tome and Principe | Africa | Central Africa | 147000 | São Tomé|
-| --- | --- | --- | --- | --- | --- |
 SOUTHERN EUROPE
-| --- | --- | --- | --- | --- | --- |
 | Code | Name | Continent | Region | Population | Capital |
 | --- | --- | --- | --- | --- | --- |
 | ITA | Italy | Europe | Southern Europe | 57680000 | Roma|
@@ -326,9 +300,7 @@ SOUTHERN EUROPE
 | SMR | San Marino | Europe | Southern Europe | 27000 | San Marino|
 | GIB | Gibraltar | Europe | Southern Europe | 25000 | Gibraltar|
 | VAT | Holy See (Vatican City State) | Europe | Southern Europe | 1000 | Città del Vaticano|
-| --- | --- | --- | --- | --- | --- |
 MIDDLE EAST
-| --- | --- | --- | --- | --- | --- |
 | Code | Name | Continent | Region | Population | Capital |
 | --- | --- | --- | --- | --- | --- |
 | TUR | Turkey | Asia | Middle East | 66591000 | Ankara|
@@ -349,9 +321,7 @@ MIDDLE EAST
 | CYP | Cyprus | Asia | Middle East | 754700 | Nicosia|
 | BHR | Bahrain | Asia | Middle East | 617000 | al-Manama|
 | QAT | Qatar | Asia | Middle East | 599000 | Doha|
-| --- | --- | --- | --- | --- | --- |
 SOUTH AMERICA
-| --- | --- | --- | --- | --- | --- |
 | Code | Name | Continent | Region | Population | Capital |
 | --- | --- | --- | --- | --- | --- |
 | BRA | Brazil | South America | South America | 170115000 | Brasília|
@@ -368,9 +338,7 @@ SOUTH AMERICA
 | SUR | Suriname | South America | South America | 417000 | Paramaribo|
 | GUF | French Guiana | South America | South America | 181000 | Cayenne|
 | FLK | Falkland Islands | South America | South America | 2000 | Stanley|
-| --- | --- | --- | --- | --- | --- |
 POLYNESIA
-| --- | --- | --- | --- | --- | --- |
 | Code | Name | Continent | Region | Population | Capital |
 | --- | --- | --- | --- | --- | --- |
 | PYF | French Polynesia | Oceania | Polynesia | 235000 | Papeete|
@@ -383,14 +351,10 @@ POLYNESIA
 | NIU | Niue | Oceania | Polynesia | 2000 | Alofi|
 | TKL | Tokelau | Oceania | Polynesia | 2000 | Fakaofo|
 | PCN | Pitcairn | Oceania | Polynesia | 50 | Adamstown|
-| --- | --- | --- | --- | --- | --- |
 ANTARCTICA
-| --- | --- | --- | --- | --- | --- |
 | Code | Name | Continent | Region | Population | Capital |
 | --- | --- | --- | --- | --- | --- |
-| --- | --- | --- | --- | --- | --- |
 AUSTRALIA AND NEW ZEALAND
-| --- | --- | --- | --- | --- | --- |
 | Code | Name | Continent | Region | Population | Capital |
 | --- | --- | --- | --- | --- | --- |
 | AUS | Australia | Oceania | Australia and New Zealand | 18886000 | Canberra|
@@ -398,9 +362,7 @@ AUSTRALIA AND NEW ZEALAND
 | CXR | Christmas Island | Oceania | Australia and New Zealand | 2500 | Flying Fish Cove|
 | NFK | Norfolk Island | Oceania | Australia and New Zealand | 2000 | Kingston|
 | CCK | Cocos (Keeling) Islands | Oceania | Australia and New Zealand | 600 | West Island|
-| --- | --- | --- | --- | --- | --- |
 WESTERN EUROPE
-| --- | --- | --- | --- | --- | --- |
 | Code | Name | Continent | Region | Population | Capital |
 | --- | --- | --- | --- | --- | --- |
 | DEU | Germany | Europe | Western Europe | 82164700 | Berlin|
@@ -412,9 +374,7 @@ WESTERN EUROPE
 | LUX | Luxembourg | Europe | Western Europe | 435700 | Luxembourg [Luxemburg/Lëtzebuerg]|
 | MCO | Monaco | Europe | Western Europe | 34000 | Monaco-Ville|
 | LIE | Liechtenstein | Europe | Western Europe | 32300 | Vaduz|
-| --- | --- | --- | --- | --- | --- |
 EASTERN AFRICA
-| --- | --- | --- | --- | --- | --- |
 | Code | Name | Continent | Region | Population | Capital |
 | --- | --- | --- | --- | --- | --- |
 | ETH | Ethiopia | Africa | Eastern Africa | 62565000 | Addis Abeba|
@@ -436,9 +396,7 @@ EASTERN AFRICA
 | COM | Comoros | Africa | Eastern Africa | 578000 | Moroni|
 | MYT | Mayotte | Africa | Eastern Africa | 149000 | Mamoutzou|
 | SYC | Seychelles | Africa | Eastern Africa | 77000 | Victoria|
-| --- | --- | --- | --- | --- | --- |
 WESTERN AFRICA
-| --- | --- | --- | --- | --- | --- |
 | Code | Name | Continent | Region | Population | Capital |
 | --- | --- | --- | --- | --- | --- |
 | NGA | Nigeria | Africa | Western Africa | 111506000 | Abuja|
@@ -458,9 +416,7 @@ WESTERN AFRICA
 | GNB | Guinea-Bissau | Africa | Western Africa | 1213000 | Bissau|
 | CPV | Cape Verde | Africa | Western Africa | 428000 | Praia|
 | SHN | Saint Helena | Africa | Western Africa | 6000 | Jamestown|
-| --- | --- | --- | --- | --- | --- |
 EASTERN EUROPE
-| --- | --- | --- | --- | --- | --- |
 | Code | Name | Continent | Region | Population | Capital |
 | --- | --- | --- | --- | --- | --- |
 | RUS | Russian Federation | Europe | Eastern Europe | 146934000 | Moscow|
@@ -473,9 +429,7 @@ EASTERN EUROPE
 | BGR | Bulgaria | Europe | Eastern Europe | 8190900 | Sofija|
 | SVK | Slovakia | Europe | Eastern Europe | 5398700 | Bratislava|
 | MDA | Moldova | Europe | Eastern Europe | 4380000 | Chisinau|
-| --- | --- | --- | --- | --- | --- |
 CENTRAL AMERICA
-| --- | --- | --- | --- | --- | --- |
 | Code | Name | Continent | Region | Population | Capital |
 | --- | --- | --- | --- | --- | --- |
 | MEX | Mexico | North America | Central America | 98881000 | Ciudad de México|
@@ -486,9 +440,7 @@ CENTRAL AMERICA
 | CRI | Costa Rica | North America | Central America | 4023000 | San José|
 | PAN | Panama | North America | Central America | 2856000 | Ciudad de Panamá|
 | BLZ | Belize | North America | Central America | 241000 | Belmopan|
-| --- | --- | --- | --- | --- | --- |
 NORTH AMERICA
-| --- | --- | --- | --- | --- | --- |
 | Code | Name | Continent | Region | Population | Capital |
 | --- | --- | --- | --- | --- | --- |
 | USA | United States | North America | North America | 278357000 | Washington|
@@ -496,9 +448,7 @@ NORTH AMERICA
 | BMU | Bermuda | North America | North America | 65000 | Hamilton|
 | GRL | Greenland | North America | North America | 56000 | Nuuk|
 | SPM | Saint Pierre and Miquelon | North America | North America | 7000 | Saint-Pierre|
-| --- | --- | --- | --- | --- | --- |
 SOUTHEAST ASIA
-| --- | --- | --- | --- | --- | --- |
 | Code | Name | Continent | Region | Population | Capital |
 | --- | --- | --- | --- | --- | --- |
 | IDN | Indonesia | Asia | Southeast Asia | 212107000 | Jakarta|
@@ -512,9 +462,7 @@ SOUTHEAST ASIA
 | SGP | Singapore | Asia | Southeast Asia | 3567000 | Singapore|
 | TMP | East Timor | Asia | Southeast Asia | 885000 | Dili|
 | BRN | Brunei | Asia | Southeast Asia | 328000 | Bandar Seri Begawan|
-| --- | --- | --- | --- | --- | --- |
 SOUTHERN AFRICA
-| --- | --- | --- | --- | --- | --- |
 | Code | Name | Continent | Region | Population | Capital |
 | --- | --- | --- | --- | --- | --- |
 | ZAF | South Africa | Africa | Southern Africa | 40377000 | Pretoria|
@@ -522,9 +470,7 @@ SOUTHERN AFRICA
 | NAM | Namibia | Africa | Southern Africa | 1726000 | Windhoek|
 | BWA | Botswana | Africa | Southern Africa | 1622000 | Gaborone|
 | SWZ | Swaziland | Africa | Southern Africa | 1008000 | Mbabane|
-| --- | --- | --- | --- | --- | --- |
 EASTERN ASIA
-| --- | --- | --- | --- | --- | --- |
 | Code | Name | Continent | Region | Population | Capital |
 | --- | --- | --- | --- | --- | --- |
 | CHN | China | Asia | Eastern Asia | 1277558000 | Peking|
@@ -535,9 +481,7 @@ EASTERN ASIA
 | HKG | Hong Kong | Asia | Eastern Asia | 6782000 | Victoria|
 | MNG | Mongolia | Asia | Eastern Asia | 2662000 | Ulan Bator|
 | MAC | Macao | Asia | Eastern Asia | 473000 | Macao|
-| --- | --- | --- | --- | --- | --- |
 NORDIC COUNTRIES
-| --- | --- | --- | --- | --- | --- |
 | Code | Name | Continent | Region | Population | Capital |
 | --- | --- | --- | --- | --- | --- |
 | SWE | Sweden | Europe | Nordic Countries | 8861400 | Stockholm|
@@ -547,9 +491,7 @@ NORDIC COUNTRIES
 | ISL | Iceland | Europe | Nordic Countries | 279000 | Reykjavík|
 | FRO | Faroe Islands | Europe | Nordic Countries | 43000 | Tórshavn|
 | SJM | Svalbard and Jan Mayen | Europe | Nordic Countries | 3200 | Longyearbyen|
-| --- | --- | --- | --- | --- | --- |
 NORTHERN AFRICA
-| --- | --- | --- | --- | --- | --- |
 | Code | Name | Continent | Region | Population | Capital |
 | --- | --- | --- | --- | --- | --- |
 | EGY | Egypt | Africa | Northern Africa | 68470000 | Cairo|
@@ -559,17 +501,13 @@ NORTHERN AFRICA
 | TUN | Tunisia | Africa | Northern Africa | 9586000 | Tunis|
 | LBY | Libyan Arab Jamahiriya | Africa | Northern Africa | 5605000 | Tripoli|
 | ESH | Western Sahara | Africa | Northern Africa | 293000 | El-Aaiún|
-| --- | --- | --- | --- | --- | --- |
 BALTIC COUNTRIES
-| --- | --- | --- | --- | --- | --- |
 | Code | Name | Continent | Region | Population | Capital |
 | --- | --- | --- | --- | --- | --- |
 | LTU | Lithuania | Europe | Baltic Countries | 3698500 | Vilnius|
 | LVA | Latvia | Europe | Baltic Countries | 2424200 | Riga|
 | EST | Estonia | Europe | Baltic Countries | 1439200 | Tallinn|
-| --- | --- | --- | --- | --- | --- |
 MELANESIA
-| --- | --- | --- | --- | --- | --- |
 | Code | Name | Continent | Region | Population | Capital |
 | --- | --- | --- | --- | --- | --- |
 | PNG | Papua New Guinea | Oceania | Melanesia | 4807000 | Port Moresby|
@@ -577,9 +515,7 @@ MELANESIA
 | SLB | Solomon Islands | Oceania | Melanesia | 444000 | Honiara|
 | NCL | New Caledonia | Oceania | Melanesia | 214000 | Nouméa|
 | VUT | Vanuatu | Oceania | Melanesia | 190000 | Port-Vila|
-| --- | --- | --- | --- | --- | --- |
 MICRONESIA
-| --- | --- | --- | --- | --- | --- |
 | Code | Name | Continent | Region | Population | Capital |
 | --- | --- | --- | --- | --- | --- |
 | GUM | Guam | Oceania | Micronesia | 168000 | Agaña|
@@ -589,15 +525,11 @@ MICRONESIA
 | MHL | Marshall Islands | Oceania | Micronesia | 64000 | Dalap-Uliga-Darrit|
 | PLW | Palau | Oceania | Micronesia | 19000 | Koror|
 | NRU | Nauru | Oceania | Micronesia | 12000 | Yaren|
-| --- | --- | --- | --- | --- | --- |
 BRITISH ISLANDS
-| --- | --- | --- | --- | --- | --- |
 | Code | Name | Continent | Region | Population | Capital |
 | --- | --- | --- | --- | --- | --- |
 | GBR | United Kingdom | Europe | British Islands | 59623400 | London|
 | IRL | Ireland | Europe | British Islands | 3775100 | Dublin|
-| --- | --- | --- | --- | --- | --- |
 MICRONESIA/CARIBBEAN
-| --- | --- | --- | --- | --- | --- |
 | Code | Name | Continent | Region | Population | Capital |
 | --- | --- | --- | --- | --- | --- |

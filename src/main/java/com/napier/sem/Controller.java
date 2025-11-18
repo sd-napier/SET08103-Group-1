@@ -164,9 +164,7 @@ public class Controller {
 
         StringBuilder output = new StringBuilder();
         output.append("Country Reports\r\n");
-        output.append("| --- | --- | --- | --- | --- | --- |\r\n");
         output.append("(World)\r\n");
-        output.append("| --- | --- | --- | --- | --- | --- |\r\n");
         output.append(coReports.getHeadingFormat());
         output.append("| --- | --- | --- | --- | --- | --- |\r\n");
 
@@ -177,14 +175,11 @@ public class Controller {
         }
 
         /// All the countries in a continent organised by largest population to smallest.
-        output.append("| --- | --- | --- | --- | --- | --- |\r\n");
         output.append("(By Continent)\r\n");
         ArrayList<String> continents = getContinentNames();
 
         for (String continent : continents) {
-            output.append("| --- | --- | --- | --- | --- | --- |\r\n");
             output.append(continent.toUpperCase() + "\r\n");
-            output.append("| --- | --- | --- | --- | --- | --- |\r\n");
             output.append(coReports.getHeadingFormat());
             output.append("| --- | --- | --- | --- | --- | --- |\r\n");
 
@@ -195,14 +190,11 @@ public class Controller {
         }
 
         /// All the countries in a region organised by largest population to smallest.
-        output.append("| --- | --- | --- | --- | --- | --- |\r\n");
         output.append("(By Region)\r\n");
         ArrayList<String> regions = getRegionNames();
 
         for (String region : regions) {
-            output.append("| --- | --- | --- | --- | --- | --- |\r\n");
             output.append(region.toUpperCase() + "\r\n");
-            output.append("| --- | --- | --- | --- | --- | --- |\r\n");
             output.append(coReports.getHeadingFormat());
             output.append("| --- | --- | --- | --- | --- | --- |\r\n");
 
