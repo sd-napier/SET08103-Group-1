@@ -1,5 +1,7 @@
 package com.napier.sem;
 
+import java.util.ArrayList;
+
 /** This class generates the capital reports
  * @author Stuart C. Alexander
  * @since 19/11/2025
@@ -35,4 +37,10 @@ public class CapitalReports {
         return filename;
     }
 
+    public ArrayList<String> getCapitalReportWorld(int limit) {
+
+        ArrayList<String> worldCpaitals = new ArrayList<>();
+
+        return  worldCpaitals;
+    }
 }
