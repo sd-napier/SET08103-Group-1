@@ -1,9 +1,6 @@
 package com.napier.sem.testing;
 
-import com.napier.sem.CityPrinter;
-import com.napier.sem.CityRow;
-import com.napier.sem.Controller;
-import com.napier.sem.PopulationReports;
+import com.napier.sem.*;
 import org.junit.jupiter.api.Test;
 import java.util.List;
 
@@ -15,18 +12,18 @@ import static org.testng.AssertJUnit.*;
  */
 public class UnitTests {
 
+    ///  Controller used for passing in to class instantiation
+    Controller cont = new Controller();
+
     /// Test Controller instantiation
     @Test
     public void testControllerCreation()  {
-        Controller cont = new Controller();
-
         assertNotNull(cont);
     }
 
     /// Test PopulationReports instantiation
     @Test
     public void testPopReportCreation() {
-        Controller cont = new Controller();
         PopulationReports pop = new PopulationReports(cont);
 
         assertNotNull(pop);
@@ -35,7 +32,6 @@ public class UnitTests {
     /// Test PopulationReports Filename is correct
     @Test
     public void testPopReportsFilename() {
-        Controller cont = new Controller();
         PopulationReports pop = new PopulationReports(cont);
 
         assertEquals("populationReports.md", pop.getFilename());
@@ -49,6 +45,49 @@ public class UnitTests {
 
         assertEquals("| Name | Population | Total in Cities | % in Cities | Not in cities | % not in cities |\r\n", pop.getHeadings());
     }
+
+    /// Test Language reports instantiation
+    @Test
+    public void testLanguageReportCreation() {
+        LanguageReports lang = new LanguageReports(cont);
+        assertNotNull(lang);
+    }
+
+    @Test
+    public void testLanguageReportsFilename() {
+        LanguageReports lang = new LanguageReports(cont);
+        assertEquals("languageReports.md", lang.getFilename());
+    }
+
+    @Test
+    public void testLanguageReportsHeadings() {
+        LanguageReports lang = new LanguageReports(cont);
+        assertEquals("| Language | Number of Speakers | % of World Population |\r\n", lang.getHeadingFormat());
+    }
+
+    @Test
+    public void
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
       /////////////////////////////////////////////////////////////////////////////
      //////////////////////CityReports Tests Start Here///////////////////////////

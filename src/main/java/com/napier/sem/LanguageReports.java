@@ -43,12 +43,13 @@ public class LanguageReports {
 
     public ArrayList<String> getLanguageReport() {
 
+        /// ArrayList for storing the rows of data to be sent back to controller method
         ArrayList<String> results = new ArrayList<>();
 
         ///  Query to select language, total speakers and language percentage for each language
         String query = "SELECT l.Language, ROUND(SUM(c.Population * l.Percentage / 100)) AS TotalSpeakers, ROUND(SUM(c.Population * l.Percentage / 100) / (SELECT SUM(Population) FROM country) * 100, 2) AS Percent FROM countrylanguage l JOIN country c ON l.CountryCode = c.Code WHERE l.Language IN ('Chinese', 'English', 'Hindi', 'Spanish', 'Arabic') GROUP BY l.Language ORDER BY TotalSpeakers DESC;";
 
-        ///  Send query to the controller method to run it on database
+        ///  Try to send query to the controller method to run it on database
         try  {
             /// Result set to store query results (CHANGE FROM .runQueryLocal TO .runQuery AFTER TESTING)
             ResultSet data = cont.runQueryLocal(query);

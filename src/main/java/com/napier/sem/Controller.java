@@ -37,40 +37,12 @@ public class Controller {
 
     }
 
-//    /** runQuery Method - runs a passed in query(String query),
-//     * and prints the results from a defined column(String category)
-//     * @author Stuart C. Alexander
-//     * @since Oct 2025
-//     * @param query
-//     * @param category
-//     */
-//    public void runTestQuery(String query, String category) {
-//        ResultSet result = null;
-//        try {
-//            Connection conn = DriverManager.getConnection("jdbc:mysql://db:3306/world?useSSL=false&allowPublicKeyRetrieval=true", "root", "example");
-//            PreparedStatement stmt = conn.prepareStatement(query);
-//            result = stmt.executeQuery();
-//            while (result.next()) {
-//                System.out.println(result.getString(category));
-//            }
-//        } catch (SQLException e) {
-//            System.out.println(e.getMessage() + "RUN TEST QUERY FAILED!");
-//            e.printStackTrace();
-//        }
-//
-//    }
-
-//    /** testQuery - This method contains a query that selects each of the continents contained in the database, and passes it to run test query.
-//     * @author Stuart C. Alexander
-//     * @since Oct 2025
-//     */
-//    public void testQuery() {
-//        String testQuery = "SELECT DISTINCT Continent FROM country;";
-//        String category  = "Continent";
-//
-//        runTestQuery(testQuery, category);
-//
-//    }
+    /** runQuery() - This method is for running queries on the database WHEN the app is running in docker container(DEPLOYED)
+     * @author Stuart C. Alexander
+     * @since Nov 2025
+     * @param query - the SQL query to be run on DB
+     * @return resultset containing the query results
+     */
     public ResultSet runQuery(String query) {
         ResultSet result = null;
         try {
@@ -83,6 +55,12 @@ public class Controller {
         return result;
     }
 
+    /** runQueryLocal() - This method is for running queries on the database WHEN the app is run from IntelliJ(TESTING)
+     * @author Stuart C. Alexander
+     * @since Nov 2025
+     * @param query - the SQL query to be run on DB
+     * @return resultset containing the query results
+     */
     public ResultSet runQueryLocal(String query) {
         ResultSet result = null;
         try {
@@ -95,12 +73,15 @@ public class Controller {
         return result;
     }
 
-    /** Assembles the population reports and sends them to printer method
+    /** populationReports() - Assembles the population reports and sends them to printer method
      * @author Stuart C. Alexander
      * @since Nov 2025
      */
     public void populationReports() {
+
+        /// StringBuilder for holding the formatted generated reports
         StringBuilder output = new StringBuilder();
+
         output.append("Population Reports\r\n");
         output.append(popReports.getHeadings());
         output.append("| --- | --- | --- | --- | --- | --- |\r\n");
@@ -500,7 +481,40 @@ public class Controller {
 
     }
 
-
+//    /** runQuery Method - runs a passed in query(String query),
+//     * and prints the results from a defined column(String category)
+//     * @author Stuart C. Alexander
+//     * @since Oct 2025
+//     * @param query
+//     * @param category
+//     */
+//    public void runTestQuery(String query, String category) {
+//        ResultSet result = null;
+//        try {
+//            Connection conn = DriverManager.getConnection("jdbc:mysql://db:3306/world?useSSL=false&allowPublicKeyRetrieval=true", "root", "example");
+//            PreparedStatement stmt = conn.prepareStatement(query);
+//            result = stmt.executeQuery();
+//            while (result.next()) {
+//                System.out.println(result.getString(category));
+//            }
+//        } catch (SQLException e) {
+//            System.out.println(e.getMessage() + "RUN TEST QUERY FAILED!");
+//            e.printStackTrace();
+//        }
+//
+//    }
+//
+//    /** testQuery - This method contains a query that selects each of the continents contained in the database, and passes it to run test query.
+//     * @author Stuart C. Alexander
+//     * @since Oct 2025
+//     */
+//    public void testQuery() {
+//        String testQuery = "SELECT DISTINCT Continent FROM country;";
+//        String category  = "Continent";
+//
+//        runTestQuery(testQuery, category);
+//
+//    }
 
 
 
