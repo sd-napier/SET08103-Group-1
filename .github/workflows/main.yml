@@ -27,14 +27,7 @@ jobs:
       - name: Set up Node
         uses: actions/setup-node@v4
 
-#      - name: Install dependencies
-#        run: npm install --save-dev jest
-#
-#      - name: Run tests
-#        run: npx jest --coverage
-#
-#      - name: Generate JUnit tests
-#        run: npm i --save-dev jest-junit JEST_JUNIT_CLASSNAME="{filepath}" jest --reporters=jest-junit
+
 
   IntegrationTests:
     name: Integration Tests
@@ -49,7 +42,7 @@ jobs:
         with:
           java-version: '17'
           distribution: 'adopt'
-      - name: Integration Tests and CodeCov
+      - name: Integration Tests
         run: |
           docker build -t database ./db 
           docker run --name employees -dp 33060:3306 database
@@ -58,6 +51,7 @@ jobs:
           docker rm employees
           docker image rm database
       - name: Test Reports
+        run: python3 -m pytest --cov-report "xml:reports/coverage/coverage.xml" --junitxml="reports/unit/unit.xml"
         uses: xportation/junit-coverage-report@main
         with:
           junit-path: ./reports/unit/unit.xml
