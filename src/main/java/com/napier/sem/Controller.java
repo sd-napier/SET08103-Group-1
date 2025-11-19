@@ -61,17 +61,17 @@ public class Controller {
      * @param query - the SQL query to be run on DB
      * @return resultset containing the query results
      */
-    public ResultSet runQueryLocal(String query) {
-        ResultSet result = null;
-        try {
-            PreparedStatement stmt = conn.prepareStatement(query);
-            result = stmt.executeQuery();
-        } catch (SQLException e) {
-            System.out.println(e.getMessage() + "Failed to Run Query from IntelliJ(Local) App!");
-            e.printStackTrace();
-        }
-        return result;
-    }
+//    public ResultSet runQueryLocal(String query) {
+//        ResultSet result = null;
+//        try {
+//            PreparedStatement stmt = conn.prepareStatement(query);
+//            result = stmt.executeQuery();
+//        } catch (SQLException e) {
+//            System.out.println(e.getMessage() + "Failed to Run Query from IntelliJ(Local) App!");
+//            e.printStackTrace();
+//        }
+//        return result;
+//    }
 
     /** populationReports() - Assembles the population reports and sends them to printer method
      * @author Stuart C. Alexander
@@ -315,7 +315,7 @@ public class Controller {
         ArrayList<String> continents = new ArrayList<>();
         try {
             /// Result set to store query results (CHANGE FROM .runQueryLocal TO .runQuery AFTER TESTING)
-            ResultSet allContinents = runQueryLocal("SELECT DISTINCT Continent FROM country");
+            ResultSet allContinents = runQuery("SELECT DISTINCT Continent FROM country");
             while (allContinents.next()) {
                 continents.add(allContinents.getString("Continent"));
             }
@@ -329,7 +329,7 @@ public class Controller {
         ArrayList<String> regions = new ArrayList<>();
         try {
             /// Result set to store query results (CHANGE FROM .runQueryLocal TO .runQuery AFTER TESTING)
-            ResultSet allRegions = runQueryLocal("SELECT DISTINCT Region FROM country");
+            ResultSet allRegions = runQuery("SELECT DISTINCT Region FROM country");
             while (allRegions.next()) {
                 regions.add(allRegions.getString("Region"));
             }
