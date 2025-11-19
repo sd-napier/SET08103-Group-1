@@ -50,8 +50,10 @@ jobs:
           docker stop employees
           docker rm employees
           docker image rm database
-      - name: Test Reports
+      - name: Running report code
         run: python3 -m pytest --cov-report "xml:reports/coverage/coverage.xml" --junitxml="reports/unit/unit.xml"
+
+      - name: Test Reports
         uses: xportation/junit-coverage-report@main
         with:
           junit-path: ./reports/unit/unit.xml
