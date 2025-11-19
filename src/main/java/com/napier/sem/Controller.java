@@ -55,23 +55,7 @@ public class Controller {
         return result;
     }
 
-    /** runQueryLocal() - This method is for running queries on the database WHEN the app is run from IntelliJ(TESTING)
-     * @author Stuart C. Alexander
-     * @since Nov 2025
-     * @param query - the SQL query to be run on DB
-     * @return resultset containing the query results
-     */
-//    public ResultSet runQueryLocal(String query) {
-//        ResultSet result = null;
-//        try {
-//            PreparedStatement stmt = conn.prepareStatement(query);
-//            result = stmt.executeQuery();
-//        } catch (SQLException e) {
-//            System.out.println(e.getMessage() + "Failed to Run Query from IntelliJ(Local) App!");
-//            e.printStackTrace();
-//        }
-//        return result;
-//    }
+
 
     /** populationReports() - Assembles the population reports and sends them to printer method
      * @author Stuart C. Alexander
