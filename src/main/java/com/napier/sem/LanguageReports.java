@@ -52,7 +52,7 @@ public class LanguageReports {
         ///  Try to send query to the controller method to run it on database
         try  {
             /// Result set to store query results (CHANGE FROM .runQueryLocal TO .runQuery AFTER TESTING)
-            ResultSet data = cont.runQueryLocal(query);
+            ResultSet data = cont.runQuery(query);
             while (data.next()) {
                 language = data.getString("Language");
                 totalSpeakers = data.getInt("TotalSpeakers");

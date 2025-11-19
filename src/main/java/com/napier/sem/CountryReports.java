@@ -58,7 +58,7 @@ public class CountryReports {
 
         try {
             /// Result set to store query results (CHANGE FROM .runQueryLocal TO .runQuery AFTER TESTING)
-            ResultSet data = cont.runQueryLocal(query);
+            ResultSet data = cont.runQuery(query);
             while (data.next()) {
                 code = data.getString("Code");
                 name = data.getString("Name");
@@ -88,7 +88,7 @@ public class CountryReports {
 
         try {
             /// Result set to store query results (CHANGE FROM .runQueryLocal TO .runQuery AFTER TESTING)
-            ResultSet data = cont.runQueryLocal(query);
+            ResultSet data = cont.runQuery(query);
             while (data.next()) {
                 code = data.getString("Code");
                 name = data.getString("Name");
@@ -118,7 +118,7 @@ public class CountryReports {
 
         try {
             /// Result set to store query results (CHANGE FROM .runQueryLocal TO .runQuery AFTER TESTING)
-            ResultSet data = cont.runQueryLocal(query);
+            ResultSet data = cont.runQuery(query);
             while (data.next()) {
                 code = data.getString("Code");
                 name = data.getString("Name");
