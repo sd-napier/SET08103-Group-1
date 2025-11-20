@@ -4,7 +4,9 @@ import com.napier.sem.*;
 import org.junit.jupiter.api.Test;
 import java.util.List;
 
-import static org.testng.AssertJUnit.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.Assert;
 
 /** JUnit Test Class for testing application methods
  * @author Stuart C. Alexander
