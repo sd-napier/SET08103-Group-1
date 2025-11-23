@@ -28,10 +28,9 @@ public class AppIntegrationTest {
     static void setup() throws InterruptedException {
         // Create controller and connect to Docker DB
         controller = new Controller();
-
         // Thread is a separate path of execution in java.
         // This allows LocalTestConnection to run without blocking upcoming tests.
-        Thread t = new Thread(() ->  controller.localConnection());
+        Thread t = new Thread(() ->  controller.dockerConnection());
 
         // Create new thread and test LocalTestConnection.
        t.start();
