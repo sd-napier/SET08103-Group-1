@@ -90,3 +90,5 @@ jobs:
           automatic_release_tag: "latest"
           files: |
             ./target/*.jar
+
+  #Test to ensure workflow functions as expected/creates a release
