@@ -92,4 +92,4 @@ jobs:
             ./target/*.jar
 
   #Test to ensure workflow functions as expected/creates a release
-  #
+  #T
