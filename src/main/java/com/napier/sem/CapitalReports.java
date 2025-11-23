@@ -39,8 +39,12 @@ public class CapitalReports {
 
     public ArrayList<String> getCapitalReportWorld(int limit) {
 
-        ArrayList<String> worldCpaitals = new ArrayList<>();
+        ArrayList<String> worldCapitals = new ArrayList<>();
 
-        return  worldCpaitals;
+        String query = "SELECT ci.Name as Name, co.Name as Country, ci.Population as Population FROM city ci JOIN country co ON ci.ID = co.Capital ORDER BY ci.Population DESC LIMIT " + limit + ";";
+
+
+
+        return  worldCapitals;
     }
 }
