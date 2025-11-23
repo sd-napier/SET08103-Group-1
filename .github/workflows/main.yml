@@ -60,8 +60,10 @@ jobs:
           distribution: 'adopt'
 
       - name: Wait for MySQL
-        run : sleep 15
+        run: sleep 15
 
+      - name: Load test database
+        run: mysql -h mysql -u root -pexample world < ./db/world.sql
 
       - name: Integration Tests and CodeCov
         run: |

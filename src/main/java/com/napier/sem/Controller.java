@@ -7,6 +7,10 @@ import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 
+
+import java.sql.DriverManager;
+
+
 /** A Controller Class for interacting with the database container
  * @author Stuart C.Alexander
  * @since Oct 2025
