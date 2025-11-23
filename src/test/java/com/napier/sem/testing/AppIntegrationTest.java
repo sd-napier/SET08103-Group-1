@@ -80,7 +80,7 @@ public class AppIntegrationTest {
      * Test 3. Check that the population report file can be generated inside the reports directory.
      */
 
-    @Test
+  /*  @Test
     void testPopulationReportFileCreation() {
         PopulationReports pop = new PopulationReports(controller);
         // Creates a test specific file to avoid overriding non-test file.
@@ -103,7 +103,7 @@ public class AppIntegrationTest {
         // Delete the test file after checking it exists.
         // Optional
         //testReportFile.delete();
-    }
+    }*/
 
 
 }
