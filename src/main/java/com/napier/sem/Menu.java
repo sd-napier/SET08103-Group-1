@@ -2,7 +2,7 @@ package com.napier.sem;
 
 /** Menu Class - Prints the menu that the user interacts with
  * @author Stuart C. Alexander
- * @since Nov 2025
+ * @since Oct 2025
  */
 public class Menu {
 
@@ -23,7 +23,8 @@ public class Menu {
     }
 
     /** Prints the main menu - triggered in the constructor
-     *
+     * @author Stuart C. Alexander
+     * @since Oct 2025
      */
     public void printMainMenu() {
 
@@ -49,22 +50,23 @@ public class Menu {
             switch(choice) {
                 case 1: // Print Population Reports
                     cont.populationReports();
-                    break; // break out of while loop
-                case 2:
+                    break;
+                case 2: // Print City Reports
                     int n = cont.getN();
                     cont.outputCityReports(n);
-                    break; // break out of while loop
-                case 3:
-                    System.out.println("Test Capital Reports");
-                    break; // break out of while loop
-                case 4:
+                    break;
+                case 3: // Print Capital Reports
+                    int X = input.getN();
+                    cont.capitalReports(X);
+                    break;
+                case 4: // Print Country Reports
                     int N = input.getN();
                     cont.countryReports(N);
-                    break; // break out of while loop
-                case 5:
+                    break;
+                case 5: // Print Language Reports
                     cont.languageReports();
-                    break; // break out of while loop
-                case 6:
+                    break;
+                case 6: // Exit Application
                     running = false;
                     System.out.println("""
                             |------------------------------------------------------------------------------------------------------|
@@ -72,7 +74,7 @@ public class Menu {
                             |------------------------------------------------------------------------------------------------------|
                             """);
                     break;
-                default:
+                default: // default (1-6 not selected)
                     System.out.println("Invalid Selection!");
             }
         }
