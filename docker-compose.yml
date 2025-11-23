@@ -9,14 +9,6 @@ services:
     tty: true
     command: java -jar App.jar
 
-  # for testing CI workflow --deploy allows us to terminate the app in main.yml on build test
-  app_test:
-    build: .
-    image: groupwork-app:latest
-    stdin_open: true
-    tty: true
-    command: java -jar App.jar --deploy
-
   # Build the db as name db from the Dockerfile in the db folder
   # exposing the port if we want to run code outside a container
   db:
