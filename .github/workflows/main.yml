@@ -52,20 +52,20 @@ jobs:
           docker image rm database
 
 
+#  Build:
+#    name: Build and Start Using docker-compose
+#    runs-on: ubuntu-22.04
+#    steps:
+#      - name: Checkout
+#        uses: actions/checkout@v4
+#
+#      - name: Set up JDK 17
+#        uses: actions/setup-java@v4
+#        with:
+#          java-version: '17'
+#          distribution: 'adopt'
+
   Build:
-    name: Build and Start Using docker-compose
-    runs-on: ubuntu-22.04
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Set up JDK 17
-        uses: actions/setup-java@v4
-        with:
-          java-version: '17'
-          distribution: 'adopt'
-
-  build:
     name: Build Run in Docker and Deploy Release
     runs-on: ubuntu-22.04
     steps:
