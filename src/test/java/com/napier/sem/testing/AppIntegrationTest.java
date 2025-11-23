@@ -31,7 +31,7 @@ public class AppIntegrationTest {
 
         // Thread is a separate path of execution in java.
         // This allows LocalTestConnection to run without blocking upcoming tests.
-        Thread t = new Thread(() ->  controller.LocalTestConnection());
+        Thread t = new Thread(() ->  controller.localConnection());
 
         // Create new thread and test LocalTestConnection.
        t.start();
@@ -83,7 +83,6 @@ public class AppIntegrationTest {
     @Test
     void testPopulationReportFileCreation() {
         PopulationReports pop = new PopulationReports(controller);
-
         // Creates a test specific file to avoid overriding non-test file.
         String testFilename = "testWorldPopulation.md";
         String reportContent = pop.getWorldPopulation();
