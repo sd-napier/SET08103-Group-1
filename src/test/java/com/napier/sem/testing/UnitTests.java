@@ -65,28 +65,6 @@ public class UnitTests {
         assertEquals("| Language | Number of Speakers | % of World Population |\r\n", lang.getHeadingFormat());
     }
 
-    @Test
-    public void
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
       /////////////////////////////////////////////////////////////////////////////
