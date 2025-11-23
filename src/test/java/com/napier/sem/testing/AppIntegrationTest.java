@@ -31,15 +31,20 @@ public class AppIntegrationTest {
 
         // Thread is a separate path of execution in java.
         // This allows LocalTestConnection to run without blocking upcoming tests.
-        Thread t = new Thread(() ->  controller.LocalTestConnection());
+        //Thread t = new Thread(() ->  controller.LocalTestConnection());
+        //Thread t = new Thread(() ->  controller.dockerTestConnection());
+        controller.dockerTestConnection();
+
+        assertNotNull(controller.getConnection(), "Database connection failed");
+
 
         // Create new thread and test LocalTestConnection.
-       t.start();
+       //t.start();
 
        // If LocalTestConnection finishes, the thread will die 5 seconds after it's done.
         //This allows other tests to begin without needing to wait for connection to try 100 times.
        // If connection fails it will send an error message.
-       t.join(5000);
+       //t.join(5000);
     }
 
     /**
@@ -51,30 +56,10 @@ public class AppIntegrationTest {
         assertNotNull(controller, "Controller should not be null");
     }
 
-    /** Optional
-     * Test 2. Run a simple query to make sure the connection actually works.
-     * Checks that it talks to the database.
+
+    /**
+     * Test 2. Con
      */
-/*    @Test
-    void testSimpleQuery() {
-        try {
-            ResultSet rs = controller.runQuery("SELECT 1");
-            assertNotNull(rs, "ResultSet should not be null");
-
-            // If query returns a single row
-            if (rs.next()) {
-                assertEquals(1, rs.getInt(1), "Query should return 1");
-            }
-            // No rows returned, so fail.
-            else {
-                fail("No rows returned from SELECT 1 query");
-            }*/
-
-        // Catch unexpected response e.g. rows isn't = 1
-/*        } catch (SQLException e) {
-            fail("SQLException thrown: " + e.getMessage());
-        }
-    }*/
 
     /**
      * Test 3. Check that the population report file can be generated inside the reports directory.

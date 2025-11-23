@@ -37,6 +37,11 @@ public class Controller {
 
     }
 
+    public Connection getConnection() {
+        return conn;
+    }
+
+
 //    /** runQuery Method - runs a passed in query(String query),
 //     * and prints the results from a defined column(String category)
 //     * @author Stuart C. Alexander
@@ -71,6 +76,10 @@ public class Controller {
 //        runTestQuery(testQuery, category);
 //
 //    }
+
+
+    //--------------------------------------------------------
+    //Delete??
     public ResultSet runQuery(String query) {
         ResultSet result = null;
         try {
@@ -83,17 +92,20 @@ public class Controller {
         return result;
     }
 
-    public ResultSet runQueryLocal(String query) {
-        ResultSet result = null;
-        try {
-            PreparedStatement stmt = conn.prepareStatement(query);
-            result = stmt.executeQuery();
-        } catch (SQLException e) {
-            System.out.println(e.getMessage() + "Failed to Run Query from IntelliJ(Local) App!");
-            e.printStackTrace();
-        }
-        return result;
-    }
+//    public ResultSet runQueryLocal(String query) {
+//        ResultSet result = null;
+//        try {
+//            PreparedStatement stmt = conn.prepareStatement(query);
+//            result = stmt.executeQuery();
+//        } catch (SQLException e) {
+//            System.out.println(e.getMessage() + "Failed to Run Query from IntelliJ(Local) App!");
+//            e.printStackTrace();
+//        }
+//        return result;
+//    }
+
+    //--------------------------------------------------------
+
 
     /** Assembles the population reports and sends them to printer method
      * @author Stuart C. Alexander
@@ -334,7 +346,8 @@ public class Controller {
         ArrayList<String> continents = new ArrayList<>();
         try {
             /// Result set to store query results (CHANGE FROM .runQueryLocal TO .runQuery AFTER TESTING)
-            ResultSet allContinents = runQueryLocal("SELECT DISTINCT Continent FROM country");
+            ResultSet allContinents = runQuery("SELECT DISTINCT Continent FROM country");
+
             while (allContinents.next()) {
                 continents.add(allContinents.getString("Continent"));
             }
@@ -348,7 +361,7 @@ public class Controller {
         ArrayList<String> regions = new ArrayList<>();
         try {
             /// Result set to store query results (CHANGE FROM .runQueryLocal TO .runQuery AFTER TESTING)
-            ResultSet allRegions = runQueryLocal("SELECT DISTINCT Region FROM country");
+            ResultSet allRegions = runQuery("SELECT DISTINCT Region FROM country");
             while (allRegions.next()) {
                 regions.add(allRegions.getString("Region"));
             }
@@ -383,60 +396,12 @@ public class Controller {
      *
      */
     public void dockerTestConnection() {
-        try
-        {
-            // Load Database driver
-            Class.forName("com.mysql.cj.jdbc.Driver");
-        }
-        catch (ClassNotFoundException e)
-        {
-            System.out.println("Could not load SQL driver");
-            System.exit(-1);
-        }
-
-        // Connection to the database
-        Connection con = null;
-        int retries = 100;
-        for (int i = 0; i < retries; ++i)
-        {
-            System.out.println("Connecting to database...");
-            try
-            {
-                // Wait a bit for db to start
-                Thread.sleep(1000);
-                // Connect to database
-                con = DriverManager.getConnection("jdbc:mysql://db:3306/world?useSSL=false&allowPublicKeyRetrieval=true", "root", "example");
-                System.out.println("Successfully connected");
-                // Wait a bit
-                Thread.sleep(1000);
-                conn = DriverManager.getConnection("jdbc:mysql://db:3306/world?useSSL=false&allowPublicKeyRetrieval=true", "root", "example");
-                Menu menu = new Menu(this);
-                menu.printMainMenu();
-                // Exit for loop
-                break;
-            }
-            catch (SQLException sqle)
-            {
-                System.out.println("Failed to connect to database attempt " + Integer.toString(i));
-                System.out.println(sqle.getMessage());
-            }
-            catch (InterruptedException ie)
-            {
-                System.out.println("Thread interrupted? Should not happen.");
-            }
-        }
-
-        if (con != null)
-        {
-            try
-            {
-                // Close connection
-                con.close();
-            }
-            catch (Exception e)
-            {
-                System.out.println("Error closing connection to database");
-            }
+        try {
+            String url = "jdbc:mysql://mysql:3306/world?allowPublicKeyRetrieval=true&useSSL=false";
+            conn = DriverManager.getConnection(url, "root", "example");
+            System.out.println("Connected to GitHub Actions MySQL!");
+        } catch (Exception e) {
+            System.out.println("Failed to connect: " + e.getMessage());
         }
     }
 
@@ -463,13 +428,12 @@ public class Controller {
                 // Wait a bit for db to start
                 Thread.sleep(1000);
                 // Connect to database
-                con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:33060/world?useSSL=false&allowPublicKeyRetrieval=true", "root", "example");
+                con = DriverManager.getConnection("jdbc:mysql://db:3306/world?useSSL=false&allowPublicKeyRetrieval=true", "root", "example");
                 System.out.println("Successfully connected");
                 // Wait a bit
                 Thread.sleep(1000);
                 Menu menu = new Menu(this);
-                conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:33060/world?useSSL=false&allowPublicKeyRetrieval=true", "root", "example");
-                menu.printMainMenu();
+                conn = DriverManager.getConnection("jdbc:mysql://db:3306/world?useSSL=false&allowPublicKeyRetrieval=true", "root", "example"); menu.printMainMenu();
                 // Exit for loop
                 break;
             }
