@@ -1,5 +1,7 @@
 package com.napier.sem;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 /** This class generates the capital reports
@@ -8,11 +10,15 @@ import java.util.ArrayList;
  */
 public class CapitalReports {
 
+    ///  Class wide Variables
     private Controller cont;
     private String filename = "capitalReports.md";
     private String headingFormat = " | Name | Country | Population |\r\n";
 
-
+    /// Value variables for retrieved data
+    private String name;
+    private String country;
+    private String population;
 
     /// Constructor
     public CapitalReports(Controller cont){
@@ -25,6 +31,7 @@ public class CapitalReports {
      * @return
      */
     public String getHeadingFormat() {
+
         return headingFormat;
     }
 
@@ -34,6 +41,7 @@ public class CapitalReports {
      * @return
      */
     public String getFilename() {
+
         return filename;
     }
 
@@ -43,8 +51,60 @@ public class CapitalReports {
 
         String query = "SELECT ci.Name as Name, co.Name as Country, ci.Population as Population FROM city ci JOIN country co ON ci.ID = co.Capital ORDER BY ci.Population DESC LIMIT " + limit + ";";
 
+        try {
+            ResultSet data = cont.runQuery(query);
+            while (data.next()) {
+                name = data.getString("Name");
+                country = data.getString("Country");
+                population = Integer.toString(data.getInt("Population"));
+                worldCapitals.add("| " + name + " | " + country + " | " + population + " |\r\n ");
+            }
 
+        } catch (SQLException e) {
+            System.out.println(e.getMessage() + "\nCAPITAL REPORT(world) QUERY FAILED!");
+        }
+        return worldCapitals;
+    }
 
-        return  worldCapitals;
+    public ArrayList<String> getCapitalReportContinent(String conti,int limit) {
+
+        ArrayList<String> contiCapitals = new ArrayList<>();
+
+        String query = "SELECT ci.Name as Name, co.Name as Country, ci.Population as Population FROM city ci JOIN country co ON ci.ID = co.Capital WHERE co.Continent = '" + conti + "' ORDER BY ci.Population DESC LIMIT " + limit + ";";
+
+        try {
+            ResultSet data = cont.runQuery(query);
+            while (data.next()) {
+                name = data.getString("Name");
+                country = data.getString("Country");
+                population = Integer.toString(data.getInt("Population"));
+                contiCapitals.add("| " + name + " | " + country + " | " + population + " |\r\n ");
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage() + "\nCAPITAL REPORT(continent : " + conti + ") QUERY FAILED!");
+        }
+        return contiCapitals;
+    }
+
+    public ArrayList<String> getCapitalReportRegion(String regi,int limit) {
+
+        ArrayList<String> regiCapitals = new ArrayList<>();
+
+        String query = "SELECT ci.Name as Name, co.Name as Country, ci.Population as Population FROM city ci JOIN country co ON ci.ID = co.Capital WHERE co.Region = '" + regi + "' ORDER BY ci.Population DESC LIMIT " + limit + ";";
+
+        try {
+            ResultSet data = cont.runQuery(query);
+            while (data.next()) {
+                name = data.getString("Name");
+                country = data.getString("Country");
+                population = Integer.toString(data.getInt("Population"));
+                regiCapitals.add("| " + name + " | " + country + " | " + population + " |\r\n ");
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage() + "\nCAPITAL REPORT(region : " + regi + ") QUERY FAILED!");
+        }
+        return regiCapitals;
     }
 }
