@@ -6,6 +6,7 @@ on:
       - Master
       - Feature
       - CIntegrationInfra
+      - buildifix   # Temporary
 
 jobs:
   UnitTests:
