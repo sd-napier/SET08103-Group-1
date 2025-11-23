@@ -30,9 +30,7 @@ public class AppIntegrationTest {
         controller = new Controller();
 
         // Thread is a separate path of execution in java.
-        // This allows LocalTestConnection to run without blocking upcoming tests.
-        //Thread t = new Thread(() ->  controller.LocalTestConnection());
-        //Thread t = new Thread(() ->  controller.dockerTestConnection());
+
         controller.dockerTestConnection();
 
         assertNotNull(controller.getConnection(), "Database connection failed");
