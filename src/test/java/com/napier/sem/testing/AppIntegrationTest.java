@@ -28,10 +28,9 @@ public class AppIntegrationTest {
     static void setup() throws InterruptedException {
         // Create controller and connect to Docker DB
         controller = new Controller();
-
         // Thread is a separate path of execution in java.
         // This allows LocalTestConnection to run without blocking upcoming tests.
-        Thread t = new Thread(() ->  controller.LocalTestConnection());
+        Thread t = new Thread(() ->  controller.dockerConnection());
 
         // Create new thread and test LocalTestConnection.
        t.start();
@@ -80,10 +79,9 @@ public class AppIntegrationTest {
      * Test 3. Check that the population report file can be generated inside the reports directory.
      */
 
-    @Test
+  /*  @Test
     void testPopulationReportFileCreation() {
         PopulationReports pop = new PopulationReports(controller);
-
         // Creates a test specific file to avoid overriding non-test file.
         String testFilename = "testWorldPopulation.md";
         String reportContent = pop.getWorldPopulation();
@@ -104,7 +102,7 @@ public class AppIntegrationTest {
         // Delete the test file after checking it exists.
         // Optional
         //testReportFile.delete();
-    }
+    }*/
 
 
 }

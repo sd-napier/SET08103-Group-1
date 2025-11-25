@@ -20,6 +20,7 @@ public class Controller {
     private PopulationReports popReports;
     private LanguageReports langReports;
     private CountryReports coReports;
+    private CapitalReports capReports;
     private Connection conn;
 
     /** Constructor - Creates a new instance of queries, assigns itself(this) as the class wide wariable 'cont'
@@ -30,14 +31,14 @@ public class Controller {
     public Controller() {
         cont = this;
         input = new IO();
-        //queries = new Queries();
         popReports = new PopulationReports(cont);
         langReports = new LanguageReports(cont);
         coReports = new CountryReports(cont);
-
+        capReports = new CapitalReports(cont);
     }
-
-    /** runQuery() - This method is for running queries on the database WHEN the app is running in docker container(DEPLOYED)
+    /** runQuery() - This method is for running queries on the database,
+     * Population, Language, Country and Capital Reports use it to get the required data
+     * from the database before formatting to the desired Markdown format
      * @author Stuart C. Alexander
      * @since Nov 2025
      * @param query - the SQL query to be run on DB
@@ -54,8 +55,6 @@ public class Controller {
         }
         return result;
     }
-
-
 
     /** populationReports() - Assembles the population reports and sends them to printer method
      * @author Stuart C. Alexander
@@ -172,16 +171,239 @@ public class Controller {
         printToFile(coReports.getFilename(), output);
     }
 
+    /** capitalReports() - Assembles and the Capital Reports and send to the markdown printer method
+     * @author Stuart C. Alexander
+     * @param limit
+     */
+    public void capitalReports(int limit) {
+        StringBuilder output = new StringBuilder();
+        output.append("Capital Reports\r\n");
+        output.append("(World)\r\n");
+        output.append(capReports.getHeadingFormat());
+        output.append("| --- | --- | --- |\r\n");
 
+        ArrayList<String> world = capReports.getCapitalReportWorld(limit);
+        for (String capital : world) {
+            output.append(capital);
+        }
 
+        output.append("(By Continent)\r\n");
+        ArrayList<String> continents = getContinentNames();
+        for (String continent : continents) {
+            output.append(continent.toUpperCase() + "\r\n");
+            output.append(capReports.getHeadingFormat());
+            output.append("| --- | --- | --- |\r\n");
 
+            ArrayList<String> byContinent = capReports.getCapitalReportContinent(continent, limit);
+            for(String row : byContinent) {
+                output.append(row);
+            }
+        }
+        output.append("(By Region)\r\n");
+        ArrayList<String> regions = getRegionNames();
 
+        for (String region : regions) {
+            output.append(region.toUpperCase() + "\r\n");
+            output.append(capReports.getHeadingFormat());
+            output.append("| --- | --- | --- |\r\n");
 
+            ArrayList<String> byRegion = capReports.getCapitalReportRegion(region, limit);
+            for(String row : byRegion) {
+                output.append(row);
+            }
+        }
 
+        System.out.println("PRINTING...");
+        printToFile(capReports.getFilename(), output);
+    }
 
+    public ArrayList<String> getContinentNames() {
+        ArrayList<String> continents = new ArrayList<>();
+        try {
+            /// Result set to store query results (CHANGE FROM .runQueryLocal TO .runQuery AFTER TESTING)
+            ResultSet allContinents = runQuery("SELECT DISTINCT Continent FROM country");
+            while (allContinents.next()) {
+                continents.add(allContinents.getString("Continent"));
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage() + "\nFAILED TO GET ALL CONTINENTS IN CONTROLLER METHOD");
+        }
+        return continents;
+    }
 
+    /** getRegionNames() - This method returns an arraylist containing the names of all the regions in the database
+     * @author Stuart C. Alexander
+     * @since Oct 2025
+     * @return ArrayList containing String values of all the Region names
+     */
+    public ArrayList<String> getRegionNames() {
+        ArrayList<String> regions = new ArrayList<>();
+        try {
+            /// Result set to store query results (CHANGE FROM .runQueryLocal TO .runQuery AFTER TESTING)
+            ResultSet allRegions = runQuery("SELECT DISTINCT Region FROM country");
+            while (allRegions.next()) {
+                regions.add(allRegions.getString("Region"));
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage() + "\nFAILED TO GET ALL REGIONS IN CONTROLLER METHOD");
+        }
+        return regions;
+    }
 
+    /** Print to .md file
+     * @author Stuart C. Alexander
+     * @since Nov 2025
+     * @param filename the filename to be written to
+     * @param data the assembled report stringbuilder to be printed into .md
+     *
+     */
+    public void printToFile(String filename, StringBuilder data) {
 
+        try {
+            new File("./reports/").mkdir();
+            BufferedWriter wr = new BufferedWriter(new FileWriter(new File("./reports/" + filename)));
+            wr.write(data.toString());
+            wr.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /** dockerConnection() - This Method creates the database connection with Docker container values, and if successful runs the
+     * (used to run app from docker container in deployment)
+     * @author Stuart C. Alexander
+     * @since Oct 2025
+     */
+    public void dockerConnection() {
+        try
+        {
+            // Load Database driver
+            Class.forName("com.mysql.cj.jdbc.Driver");
+        }
+        catch (ClassNotFoundException e)
+        {
+            System.out.println("Could not load SQL driver");
+            System.exit(-1);
+        }
+
+        // Connection to the database
+        Connection con = null;
+        int retries = 100;
+        for (int i = 0; i < retries; ++i)
+        {
+            System.out.println("Connecting to database...");
+            try
+            {
+                // Wait a bit for db to start
+                Thread.sleep(1000);
+                // Connect to database
+                con = DriverManager.getConnection("jdbc:mysql://db:3306/world?useSSL=false&allowPublicKeyRetrieval=true", "root", "example");
+                System.out.println("Successfully connected");
+                // Wait a bit
+                Thread.sleep(1000);
+                conn = DriverManager.getConnection("jdbc:mysql://db:3306/world?useSSL=false&allowPublicKeyRetrieval=true", "root", "example");
+                Menu menu = new Menu(this);
+                menu.printMainMenu();
+                // Exit for loop
+                break;
+            }
+            catch (SQLException sqle)
+            {
+                System.out.println("Failed to connect to database attempt " + Integer.toString(i));
+                System.out.println(sqle.getMessage());
+            }
+            catch (InterruptedException ie)
+            {
+                System.out.println("Thread interrupted? Should not happen.");
+            }
+        }
+
+        if (con != null)
+        {
+            try
+            {
+                // Close connection
+                con.close();
+            }
+            catch (Exception e)
+            {
+                System.out.println("Error closing connection to database");
+            }
+        }
+    }
+
+    /** localConnection() - used to run the application menu and set connection variables to local values.
+     * (used to run app from intelliJ during development)
+     * @author Stuart C. Alexander
+     * @since Oct 2025
+     */
+    public void localConnection() {
+        try
+        {
+            // Load Database driver
+            Class.forName("com.mysql.cj.jdbc.Driver");
+        }
+        catch (ClassNotFoundException e)
+        {
+            System.out.println("Could not load SQL driver");
+            System.exit(-1);
+        }
+
+        // Connection to the database
+        Connection con = null;
+        int retries = 100;
+        for (int i = 0; i < retries; ++i)
+        {
+            System.out.println("Connecting to database...");
+            try
+            {
+                // Wait a bit for db to start
+                Thread.sleep(1000);
+                // Connect to database
+                con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:33060/world?useSSL=false&allowPublicKeyRetrieval=true", "root", "example");
+                System.out.println("Successfully connected");
+                // Wait a bit
+                Thread.sleep(1000);
+                Menu menu = new Menu(this);
+                conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:33060/world?useSSL=false&allowPublicKeyRetrieval=true", "root", "example");
+                menu.printMainMenu();
+                // Exit for loop
+                break;
+            }
+            catch (SQLException sqle)
+            {
+                System.out.println("Failed to connect to database attempt " + Integer.toString(i));
+                System.out.println(sqle.getMessage());
+            }
+            catch (InterruptedException ie)
+            {
+                System.out.println("Thread interrupted? Should not happen.");
+            }
+        }
+
+        if (con != null)
+        {
+            try
+            {
+                // Close connection
+                con.close();
+            }
+            catch (Exception e)
+            {
+                System.out.println("Error closing connection to database");
+            }
+        }
+    }
+    /**
+     * small function to receive input, parse into integer and apply default if necessary
+     * @return n = user input
+     */
+    public int getN() {
+        System.out.print("→ Please enter a number (press Enter for default 32): ");
+        int n = input.getInteger();   // returns 0 if blank/invalid
+        if (n <= 0) n = 32;           // default to 32
+        return n;
+    }
     /**
      * Generates and outputs various city reports to a Markdown file.
      * <p>
@@ -265,205 +487,6 @@ public class Controller {
         }
     }
 
-    /**
-     * small function to receive input, parse into integer and apply default if necessary
-     * @return n = user input
-     */
-    public int getN() {
-        System.out.print("→ Please enter a number (press Enter for default 32): ");
-        int n = input.getInteger();   // returns 0 if blank/invalid
-        if (n <= 0) n = 32;           // default to 32
-        return n;
-    }
-
-//    /** Method to write all the Capital Reports
-//     *
-//     */
-//    public void outputCapitalReports() {
-//        String filename = "capitalReports.md";
-//        String headings = "";
-//    }
-//
-//    /** Method to write all the Country reports
-//     *
-//     */
-//    public void outputCountryReports() {
-//        String filename = "countryReports.md";
-//        String headings = "";
-//    }
-//
-//
-//
-
-    public ArrayList<String> getContinentNames() {
-        ArrayList<String> continents = new ArrayList<>();
-        try {
-            /// Result set to store query results (CHANGE FROM .runQueryLocal TO .runQuery AFTER TESTING)
-            ResultSet allContinents = runQuery("SELECT DISTINCT Continent FROM country");
-            while (allContinents.next()) {
-                continents.add(allContinents.getString("Continent"));
-            }
-        } catch (SQLException e) {
-            System.out.println(e.getMessage() + "\nFAILED TO GET ALL CONTINENTS IN CONTROLLER METHOD");
-        }
-        return continents;
-    }
-
-    public ArrayList<String> getRegionNames() {
-        ArrayList<String> regions = new ArrayList<>();
-        try {
-            /// Result set to store query results (CHANGE FROM .runQueryLocal TO .runQuery AFTER TESTING)
-            ResultSet allRegions = runQuery("SELECT DISTINCT Region FROM country");
-            while (allRegions.next()) {
-                regions.add(allRegions.getString("Region"));
-            }
-        } catch (SQLException e) {
-            System.out.println(e.getMessage() + "\nFAILED TO GET ALL REGIONS IN CONTROLLER METHOD");
-        }
-        return regions;
-    }
-
-
-
-    /** Print to .md file
-     * @author Stuart C. Alexander
-     * @since Nov 2025
-     * @param filename the filename to be written to
-     * @param data the assembled report stringbuilder to be printed into .md
-     *
-     */
-    public void printToFile(String filename, StringBuilder data) {
-
-        try {
-            new File("./reports/").mkdir();
-            BufferedWriter wr = new BufferedWriter(new FileWriter(new File("./reports/" + filename)));
-            wr.write(data.toString());
-            wr.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-    /** testConnection - This Method tests the database connection upon creation from the Docker container, and if successful runs the
-     * test query which prints the names of all the Continents contained in the Database.
-     *
-     */
-    public void dockerTestConnection() {
-        try
-        {
-            // Load Database driver
-            Class.forName("com.mysql.cj.jdbc.Driver");
-        }
-        catch (ClassNotFoundException e)
-        {
-            System.out.println("Could not load SQL driver");
-            System.exit(-1);
-        }
-
-        // Connection to the database
-        Connection con = null;
-        int retries = 100;
-        for (int i = 0; i < retries; ++i)
-        {
-            System.out.println("Connecting to database...");
-            try
-            {
-                // Wait a bit for db to start
-                Thread.sleep(1000);
-                // Connect to database
-                con = DriverManager.getConnection("jdbc:mysql://db:3306/world?useSSL=false&allowPublicKeyRetrieval=true", "root", "example");
-                System.out.println("Successfully connected");
-                // Wait a bit
-                Thread.sleep(1000);
-                conn = DriverManager.getConnection("jdbc:mysql://db:3306/world?useSSL=false&allowPublicKeyRetrieval=true", "root", "example");
-                Menu menu = new Menu(this);
-                menu.printMainMenu();
-                // Exit for loop
-                break;
-            }
-            catch (SQLException sqle)
-            {
-                System.out.println("Failed to connect to database attempt " + Integer.toString(i));
-                System.out.println(sqle.getMessage());
-            }
-            catch (InterruptedException ie)
-            {
-                System.out.println("Thread interrupted? Should not happen.");
-            }
-        }
-
-        if (con != null)
-        {
-            try
-            {
-                // Close connection
-                con.close();
-            }
-            catch (Exception e)
-            {
-                System.out.println("Error closing connection to database");
-            }
-        }
-    }
-
-    public void LocalTestConnection() {
-        try
-        {
-            // Load Database driver
-            Class.forName("com.mysql.cj.jdbc.Driver");
-        }
-        catch (ClassNotFoundException e)
-        {
-            System.out.println("Could not load SQL driver");
-            System.exit(-1);
-        }
-
-        // Connection to the database
-        Connection con = null;
-        int retries = 100;
-        for (int i = 0; i < retries; ++i)
-        {
-            System.out.println("Connecting to database...");
-            try
-            {
-                // Wait a bit for db to start
-                Thread.sleep(1000);
-                // Connect to database
-                con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:33060/world?useSSL=false&allowPublicKeyRetrieval=true", "root", "example");
-                System.out.println("Successfully connected");
-                // Wait a bit
-                Thread.sleep(1000);
-                Menu menu = new Menu(this);
-                conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:33060/world?useSSL=false&allowPublicKeyRetrieval=true", "root", "example");
-                menu.printMainMenu();
-                // Exit for loop
-                break;
-            }
-            catch (SQLException sqle)
-            {
-                System.out.println("Failed to connect to database attempt " + Integer.toString(i));
-                System.out.println(sqle.getMessage());
-            }
-            catch (InterruptedException ie)
-            {
-                System.out.println("Thread interrupted? Should not happen.");
-            }
-        }
-
-        if (con != null)
-        {
-            try
-            {
-                // Close connection
-                con.close();
-            }
-            catch (Exception e)
-            {
-                System.out.println("Error closing connection to database");
-            }
-        }
-
-
-    }
 
 //    /** runQuery Method - runs a passed in query(String query),
 //     * and prints the results from a defined column(String category)
