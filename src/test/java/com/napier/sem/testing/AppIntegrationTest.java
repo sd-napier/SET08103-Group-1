@@ -34,12 +34,12 @@ public class AppIntegrationTest {
         Thread t = new Thread(() ->  controller.LocalTestConnection());
 
         // Create new thread and test LocalTestConnection.
-       t.start();
+        t.start();
 
-       // If LocalTestConnection finishes, the thread will die 5 seconds after it's done.
+        // If LocalTestConnection finishes, the thread will die 5 seconds after it's done.
         //This allows other tests to begin without needing to wait for connection to try 100 times.
-       // If connection fails it will send an error message.
-       t.join(5000);
+        // If connection fails it will send an error message.
+        t.join(5000);
     }
 
     /**
@@ -70,7 +70,7 @@ public class AppIntegrationTest {
                 fail("No rows returned from SELECT 1 query");
             }*/
 
-        // Catch unexpected response e.g. rows isn't = 1
+    // Catch unexpected response e.g. rows isn't = 1
 /*        } catch (SQLException e) {
             fail("SQLException thrown: " + e.getMessage());
         }

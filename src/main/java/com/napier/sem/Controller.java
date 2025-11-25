@@ -14,11 +14,13 @@ import java.util.ArrayList;
 public class Controller {
 
     /// Class wide variables;
-    IO input;
-    Controller cont;
-    Queries queries;
-    PopulationReports popReports;
-    Connection conn;
+    private IO input;
+    private Controller cont;
+    //    private Queries queries;
+    private PopulationReports popReports;
+    private LanguageReports langReports;
+    private CountryReports coReports;
+    private Connection conn;
 
     /** Constructor - Creates a new instance of queries, assigns itself(this) as the class wide wariable 'cont'
      * ... to pass to other classes, and creates a new instance of the population reports class.
@@ -27,85 +29,43 @@ public class Controller {
      */
     public Controller() {
         cont = this;
-        queries = new Queries();
-        popReports = new PopulationReports(cont);
         input = new IO();
+        //queries = new Queries();
+        popReports = new PopulationReports(cont);
+        langReports = new LanguageReports(cont);
+        coReports = new CountryReports(cont);
+
     }
 
-    /** runQuery Method - runs a passed in query(String query), and prints the results from a defined column(String category)
+    /** runQuery() - This method is for running queries on the database WHEN the app is running in docker container(DEPLOYED)
      * @author Stuart C. Alexander
-     * @since Oct 2025
-     * @param query
-     * @param category
-     * @throws SQLException
+     * @since Nov 2025
+     * @param query - the SQL query to be run on DB
+     * @return resultset containing the query results
      */
-    public void runTestQuery(String query, String category) throws SQLException {
-        ResultSet result = null;
-        try {
-            Connection conn = DriverManager.getConnection("jdbc:mysql://db:3306/world?useSSL=false&allowPublicKeyRetrieval=true", "root", "example");
-            PreparedStatement stmt = conn.prepareStatement(query);
-            result = stmt.executeQuery();
-            while (result.next()) {
-                System.out.println(result.getString(category));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-            throw e;
-        }
-
-    }
-
-    /**
-     * small function to receive input, parse into integer and apply default if necessary
-     * @return n = user input
-     */
-    public int getN() {
-        System.out.print("→ Please enter a number (press Enter for default 32): ");
-        int n = input.getInteger();   // returns 0 if blank/invalid
-        if (n <= 0) n = 32;           // default to 32
-        return n;
-    }
-
-
-    /** testQuery - This method contains a query that selects each of the continents contained in the database, and passes it to run test query.
-     * @author Stuart C. Alexander
-     * @since Oct 2025
-     * @throws SQLException
-     */
-//    public void testQuery() throws SQLException {
-//        String testQuery = "SELECT DISTINCT Continent FROM country;";
-//        String category  = "Continent";
-//
-//        runTestQuery(testQuery, category);
-//
-//    }
-    public ResultSet runQuery(String query) throws SQLException {
+    public ResultSet runQuery(String query) {
         ResultSet result = null;
         try {
             PreparedStatement stmt = conn.prepareStatement(query);
             result = stmt.executeQuery();
         } catch (SQLException e) {
+            System.out.println(e.getMessage() + "Failed to Run Query from Docker deployed App!");
             e.printStackTrace();
         }
         return result;
     }
 
-    public ResultSet runQueryLocal(String query) throws SQLException {
-        ResultSet result = null;
-        try {
-            PreparedStatement stmt = conn.prepareStatement(query);
-            result = stmt.executeQuery();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return result;
-    }
 
-    /** Assembles the population reports
-     *
+
+    /** populationReports() - Assembles the population reports and sends them to printer method
+     * @author Stuart C. Alexander
+     * @since Nov 2025
      */
     public void populationReports() {
+
+        /// StringBuilder for holding the formatted generated reports
         StringBuilder output = new StringBuilder();
+
         output.append("Population Reports\r\n");
         output.append(popReports.getHeadings());
         output.append("| --- | --- | --- | --- | --- | --- |\r\n");
@@ -137,18 +97,90 @@ public class Controller {
         for (String country : countries) {
             output.append(country);
         }
-
-
+        System.out.println("PRINTING...");
+        /// sends data and filename to the .md printer
         printToFile(popReports.getFilename(), output );
     }
 
-    /** Method to write population reports
-     *
+    /** Assembles the language reports and sends them to printer method
+     * @author Stuart C. Alexander
+     * @since Nov 2025
      */
-    public void outputPopulationReports() {
+    public void languageReports() {
+        StringBuilder output = new StringBuilder();
+        output.append("Language Reports\r\n");
+        output.append(langReports.getHeadingFormat());
+        output.append("| --- | --- | --- |\r\n");
 
-
+        ArrayList<String> languages = langReports.getLanguageReport();
+        for (String language : languages) {
+            output.append(language);
+        }
+        System.out.println("PRINTING...");
+        printToFile(langReports.getFilename(), output );
     }
+
+    /** Assembles the country reports and sends them to the printer
+     * @author Stuart C. Alexander
+     * @since Nov 2025
+     * @param limit - passed in value for user defined N
+     */
+    public void countryReports(int limit) {
+
+        StringBuilder output = new StringBuilder();
+        output.append("Country Reports\r\n");
+        output.append("(World)\r\n");
+        output.append(coReports.getHeadingFormat());
+        output.append("| --- | --- | --- | --- | --- | --- |\r\n");
+
+        /// All the countries in the world organised by largest population to smallest.
+        ArrayList<String> world = coReports.getCountryReportWorld(limit);
+        for (String country : world) {
+            output.append(country);
+        }
+
+        /// All the countries in a continent organised by largest population to smallest.
+        output.append("(By Continent)\r\n");
+        ArrayList<String> continents = getContinentNames();
+
+        for (String continent : continents) {
+            output.append(continent.toUpperCase() + "\r\n");
+            output.append(coReports.getHeadingFormat());
+            output.append("| --- | --- | --- | --- | --- | --- |\r\n");
+
+            ArrayList<String> byContinent = coReports.getCountryReportContinent(continent, limit);
+            for(String row : byContinent) {
+                output.append(row);
+            }
+        }
+
+        /// All the countries in a region organised by largest population to smallest.
+        output.append("(By Region)\r\n");
+        ArrayList<String> regions = getRegionNames();
+
+        for (String region : regions) {
+            output.append(region.toUpperCase() + "\r\n");
+            output.append(coReports.getHeadingFormat());
+            output.append("| --- | --- | --- | --- | --- | --- |\r\n");
+
+            ArrayList<String> byRegion = coReports.getCountryReportRegion(region, limit);
+            for(String row : byRegion) {
+                output.append(row);
+            }
+        }
+        System.out.println("PRINTING...");
+        printToFile(coReports.getFilename(), output);
+    }
+
+
+
+
+
+
+
+
+
+
 
     /**
      * Generates and outputs various city reports to a Markdown file.
@@ -233,31 +265,71 @@ public class Controller {
         }
     }
 
-    /** Method to write all the Capital Reports
-     *
+    /**
+     * small function to receive input, parse into integer and apply default if necessary
+     * @return n = user input
      */
-    public void outputCapitalReports() {
-        String filename = "capitalReports.md";
-        String headings = "";
+    public int getN() {
+        System.out.print("→ Please enter a number (press Enter for default 32): ");
+        int n = input.getInteger();   // returns 0 if blank/invalid
+        if (n <= 0) n = 32;           // default to 32
+        return n;
     }
 
-    /** Method to write all the Country reports
-     *
-     */
-    public void outputCountryReports() {
-        String filename = "countryReports.md";
-        String headings = "";
+//    /** Method to write all the Capital Reports
+//     *
+//     */
+//    public void outputCapitalReports() {
+//        String filename = "capitalReports.md";
+//        String headings = "";
+//    }
+//
+//    /** Method to write all the Country reports
+//     *
+//     */
+//    public void outputCountryReports() {
+//        String filename = "countryReports.md";
+//        String headings = "";
+//    }
+//
+//
+//
+
+    public ArrayList<String> getContinentNames() {
+        ArrayList<String> continents = new ArrayList<>();
+        try {
+            /// Result set to store query results (CHANGE FROM .runQueryLocal TO .runQuery AFTER TESTING)
+            ResultSet allContinents = runQuery("SELECT DISTINCT Continent FROM country");
+            while (allContinents.next()) {
+                continents.add(allContinents.getString("Continent"));
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage() + "\nFAILED TO GET ALL CONTINENTS IN CONTROLLER METHOD");
+        }
+        return continents;
     }
 
-    /** Method to write all the language reports
-     *
-     */
-    public void outputLanguageReports() {
-        String filename = "languageReports.md";
-        String headings = "";
+    public ArrayList<String> getRegionNames() {
+        ArrayList<String> regions = new ArrayList<>();
+        try {
+            /// Result set to store query results (CHANGE FROM .runQueryLocal TO .runQuery AFTER TESTING)
+            ResultSet allRegions = runQuery("SELECT DISTINCT Region FROM country");
+            while (allRegions.next()) {
+                regions.add(allRegions.getString("Region"));
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage() + "\nFAILED TO GET ALL REGIONS IN CONTROLLER METHOD");
+        }
+        return regions;
     }
+
+
 
     /** Print to .md file
+     * @author Stuart C. Alexander
+     * @since Nov 2025
+     * @param filename the filename to be written to
+     * @param data the assembled report stringbuilder to be printed into .md
      *
      */
     public void printToFile(String filename, StringBuilder data) {
@@ -393,7 +465,40 @@ public class Controller {
 
     }
 
-
+//    /** runQuery Method - runs a passed in query(String query),
+//     * and prints the results from a defined column(String category)
+//     * @author Stuart C. Alexander
+//     * @since Oct 2025
+//     * @param query
+//     * @param category
+//     */
+//    public void runTestQuery(String query, String category) {
+//        ResultSet result = null;
+//        try {
+//            Connection conn = DriverManager.getConnection("jdbc:mysql://db:3306/world?useSSL=false&allowPublicKeyRetrieval=true", "root", "example");
+//            PreparedStatement stmt = conn.prepareStatement(query);
+//            result = stmt.executeQuery();
+//            while (result.next()) {
+//                System.out.println(result.getString(category));
+//            }
+//        } catch (SQLException e) {
+//            System.out.println(e.getMessage() + "RUN TEST QUERY FAILED!");
+//            e.printStackTrace();
+//        }
+//
+//    }
+//
+//    /** testQuery - This method contains a query that selects each of the continents contained in the database, and passes it to run test query.
+//     * @author Stuart C. Alexander
+//     * @since Oct 2025
+//     */
+//    public void testQuery() {
+//        String testQuery = "SELECT DISTINCT Continent FROM country;";
+//        String category  = "Continent";
+//
+//        runTestQuery(testQuery, category);
+//
+//    }
 
 
 

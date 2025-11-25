@@ -35,6 +35,21 @@ public class IO {
 
     }
 
+    public int getN() {
+        System.out.print("--> Please enter results limit: ");
+        int limit = getInteger();
+        if (limit > 32) {
+            limit = 32;
+            System.out.println("Limit set to maximum(32).");
+        } else if (limit == 0) {
+            limit = 32;
+            System.out.println("No limit selected, or invalid character entered... Setting limit to 32.");
+        } else {
+            System.out.println("Limit set to " + limit + ".");
+        }
+        return limit;
+    }
+
     public void closeScanner() {
         input.close();
     }

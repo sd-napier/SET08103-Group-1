@@ -14,11 +14,11 @@ public class Menu {
     public Menu(Controller controller) {
         cont = controller;
         System.out.println("""
+                      |-----------------------------------------------------------------------------------------------------------/
+                      |----- POPULATION REPORTS -------- v1.0 -------------------------------------------------------------------/
                       |---------------------------------------------------------------------------------------------------------/
-                      |----- POPULATION REPORTS -------- v1.0 -----------------------------------------------------------------/
+                      | - Coded by : -- Stuart Alexander, Socrates Davidopoulos, Alan Glowacz & Dominic Benell ----------------/
                       |-------------------------------------------------------------------------------------------------------/
-                      | - Coded by : -- Stuart Alexander, Socrates Davidopoulos, Alan Glowacz & Dominic Benell --------------/
-                      |-----------------------------------------------------------------------------------------------------/
                       """);
     }
 
@@ -39,18 +39,18 @@ public class Menu {
                       - 4 - Print Country Reports
                       - 5 - Print Language Reports
                       - 6 - Exit Application""");
-        System.out.print("--> Please enter a selection: ");
+
 
         while(running) {
 
-            int choice = Integer.parseInt(input.getInput().nextLine());
+            System.out.print("--> Please enter a selection: ");
+            int choice = input.getInteger();
 
             switch(choice) {
                 case 1: // Print Population Reports
                     cont.populationReports();
                     break; // break out of while loop
                 case 2:
-                    System.out.println("Test City Reports");
                     int n = cont.getN();
                     cont.outputCityReports(n);
                     break; // break out of while loop
@@ -58,16 +58,22 @@ public class Menu {
                     System.out.println("Test Capital Reports");
                     break; // break out of while loop
                 case 4:
-                    System.out.println("Test Country Reports");
+                    int N = input.getN();
+                    cont.countryReports(N);
                     break; // break out of while loop
                 case 5:
-                    System.out.println("Test Language Reports");
+                    cont.languageReports();
                     break; // break out of while loop
                 case 6:
                     running = false;
+                    System.out.println("""
+                            |------------------------------------------------------------------------------------------------------|
+                            |------------------------------------------ GOODBYE! --------------------------------------------------|
+                            |------------------------------------------------------------------------------------------------------|
+                            """);
                     break;
                 default:
-                    System.out.println("Invalid Selection! --> Please enter a selection: ");
+                    System.out.println("Invalid Selection!");
             }
         }
     }
