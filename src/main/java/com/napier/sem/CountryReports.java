@@ -15,7 +15,8 @@ public class CountryReports {
     private Controller cont;
     private String filename = "countryReports.md";
     private String headingFormat = "| Code | Name | Continent | Region | Population | Capital |\r\n";
-    /// Value variables
+
+    /// Value variables for retrieved data
     private String code;
     private String name;
     private String continent;
@@ -25,6 +26,7 @@ public class CountryReports {
 
     /// Constructor
     public CountryReports(Controller cont) {
+
         this.cont = cont;
     }
 
@@ -34,6 +36,7 @@ public class CountryReports {
      * @return headingFormat
      */
     public String getHeadingFormat() {
+
         return headingFormat;
     }
 
@@ -42,6 +45,7 @@ public class CountryReports {
      * @since Nov 2025
      */
     public String getFilename() {
+
         return filename;
     }
 
@@ -117,7 +121,6 @@ public class CountryReports {
         String query = "SELECT c.Code, c.Name, c.Continent, c.Region, c.Population, c2.Name AS Capital FROM country c JOIN city c2 ON c.Capital = c2.ID WHERE c.Region = '" + regi + "' ORDER BY c.Population DESC LIMIT " +  limit + ";";
 
         try {
-            /// Result set to store query results (CHANGE FROM .runQueryLocal TO .runQuery AFTER TESTING)
             ResultSet data = cont.runQuery(query);
             while (data.next()) {
                 code = data.getString("Code");

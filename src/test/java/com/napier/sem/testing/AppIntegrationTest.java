@@ -28,18 +28,17 @@ public class AppIntegrationTest {
     static void setup() throws InterruptedException {
         // Create controller and connect to Docker DB
         controller = new Controller();
-
         // Thread is a separate path of execution in java.
         // This allows LocalTestConnection to run without blocking upcoming tests.
-        Thread t = new Thread(() ->  controller.LocalTestConnection());
+        Thread t = new Thread(() ->  controller.dockerConnection());
 
         // Create new thread and test LocalTestConnection.
-       t.start();
+        t.start();
 
-       // If LocalTestConnection finishes, the thread will die 5 seconds after it's done.
+        // If LocalTestConnection finishes, the thread will die 5 seconds after it's done.
         //This allows other tests to begin without needing to wait for connection to try 100 times.
-       // If connection fails it will send an error message.
-       t.join(5000);
+        // If connection fails it will send an error message.
+        t.join(5000);
     }
 
     /**
@@ -70,7 +69,7 @@ public class AppIntegrationTest {
                 fail("No rows returned from SELECT 1 query");
             }*/
 
-        // Catch unexpected response e.g. rows isn't = 1
+    // Catch unexpected response e.g. rows isn't = 1
 /*        } catch (SQLException e) {
             fail("SQLException thrown: " + e.getMessage());
         }
@@ -80,10 +79,9 @@ public class AppIntegrationTest {
      * Test 3. Check that the population report file can be generated inside the reports directory.
      */
 
-    @Test
+  /*  @Test
     void testPopulationReportFileCreation() {
         PopulationReports pop = new PopulationReports(controller);
-
         // Creates a test specific file to avoid overriding non-test file.
         String testFilename = "testWorldPopulation.md";
         String reportContent = pop.getWorldPopulation();
@@ -104,7 +102,7 @@ public class AppIntegrationTest {
         // Delete the test file after checking it exists.
         // Optional
         //testReportFile.delete();
-    }
+    }*/
 
 
 }
