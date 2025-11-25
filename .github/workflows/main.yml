@@ -8,6 +8,7 @@ on:
       - Feature
       - DeployTest
       - CIntegrationInfra
+      - WorkingDeployment
 
 jobs:
   UnitTests:
